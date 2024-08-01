@@ -1,0 +1,28 @@
+{
+  "name": "sam",
+  "version": "1.0.0",
+  "description": "Le SAM « Sustainable Agriculture Mecanization » est un projet lancé par l’initiative Al Moutmir pour promouvoir la mécanisation agricole durable au niveau national. Il a pour base de collaborer étroitement avec les agriculteurs pour développer une mécanisation agricole adapté et customisé pour le travail du jour au jour. En plus, il veille à l’organisation d’un multiple évènement et compétition visant au même objectif",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azzedine-zemmari/SAM.git"
+  },
+  "author": "azzedine | wissal | khadija | ahmad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Azzedine-zemmari/SAM/issues"
+  },
+  "homepage": "https://github.com/Azzedine-zemmari/SAM#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.4"
+  }
+}
