@@ -1,12 +1,12 @@
 const express = require('express');
 require('dotenv').config();
-const rout = require("./Router/router")
+const router = require("./Router/router");
+const bodyParser = require("body-parser");
 const session = require('express-session');
 const flash = require('connect-flash');
 const db = require('./Config/db');
 const app = express();
-const Port = process.env.PORT;
-
+const Port = 3000;
 
 // Set up session middleware
 app.use(session({
@@ -19,14 +19,18 @@ app.use(session({
 // Set up flash messages
 app.use(flash());
 
+// Middleware to parse JSON and URL-encoded data
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-//for router
-app.use(rout);
+// Use the router after setting up body parsing
+app.use(router);
 
 // Start the server
 app.listen(Port, () => {
