@@ -226,7 +226,7 @@
 		rtlClass: 'owl-rtl',
 		responsiveClass: 'owl-responsive',
 		dragClass: 'owl-drag',
-		itemClass: 'owl-item',
+		itemClass: 'owl-item', 
 		stageClass: 'owl-stage',
 		stageOuterClass: 'owl-stage-outer',
 		grabClass: 'owl-grab'

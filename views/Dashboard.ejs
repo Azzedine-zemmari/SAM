@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <!-- Uncomment to show the title -->
+  <!-- <title>Owl-carousel Cards Slider | CodingNepal</title> -->
+  <link rel="stylesheet" href="/css/Events.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+</head>
+<body>
+  <div class="slider owl-carousel">
+    <% for(let i = 0; i < data.length; i++) { %>
+      <div class="card">
+        <div class="img">
+          <img src="<%= data[i].image %>" alt="">
+        </div>
+        <div class="content">
+          <div class="title">
+            <%= data[i].name %>
+          </div>
+          <p>
+            <%= data[i].description %>
+          </p>
+          <div class="btn">
+            <button>Read more</button>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <script>
+    $(".slider").owlCarousel({
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2000, // 2000ms = 2s
+      autoplayHoverPause: true,
+    });
+  </script>
+</body>
+</html>
