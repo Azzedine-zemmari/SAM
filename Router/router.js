@@ -2,7 +2,8 @@ const router = require("express").Router();
 const db = require("../Config/db");
 const bcrypt = require('bcrypt');
 const Events = require("../Controller/EventController")
-
+const CountController = require('../Controller/CountController'); // Adjust the path as necessary
+const UserController = require("../Controller/UserController")
 
 router.get('/Home', (req, res) => {
     res.render('index');
@@ -28,7 +29,7 @@ router.post("/register", async (req, res) => {
             console.error('Database error:', err);
             return res.status(500).send('Database error. Please try again later.');
         }
-        return res.send('good');
+        return res.render("index");
     });
 });
 
@@ -79,4 +80,15 @@ router.get("/InsertEvent",(req,res)=>{
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 
-module.exports = router;
+router.get('/Detail/:id', Events.getEventById);
+
+router.get('/Dashboard', CountController.showDashboard);
+
+router.get("/Admin/Events",(req,res)=>{
+    res.send("Admin")
+})
+router.get("/Admin/users",UserController.showUsers)
+
+router.delete('/Admin/users/:id', UserController.DeleteUser);
+
+module.exports = router;    

@@ -11,32 +11,43 @@
 </head>
 <body>
   <div class="slider owl-carousel">
-    <% for(let i = 0; i < data.length; i++) { %>
+    <% data.forEach(event => { %>
       <div class="card">
         <div class="img">
-          <img src="<%= data[i].image %>" alt="">
+          <img src="<%= event.image %>" alt="">
         </div>
         <div class="content">
           <div class="title">
-            <%= data[i].name %>
+            <%= event.name %>
           </div>
           <p>
-            <%= data[i].description %>
+            <%= event.description %>
           </p>
           <div class="btn">
-            <button>Read more</button>
+            <button><a href="/Detail/<%= event.id %>">Read More</a></button>
           </div>
         </div>
       </div>
-    <% } %>
+    <% }); %>
   </div>
   <script>
-    $(".slider").owlCarousel({
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 2000, // 2000ms = 2s
-      autoplayHoverPause: true,
+    $(document).ready(function(){
+      if ($('.owl-carousel .card').length > 1) {
+        $(".slider").owlCarousel({
+          loop: false,
+          autoplay: true,
+          autoplayTimeout: 2000, // 2000ms = 2s
+          autoplayHoverPause: true,
+        });
+      } else {
+        $(".slider").owlCarousel({
+          loop: false,
+          autoplay: false,
+          items: 1
+        });
+      }
     });
   </script>
 </body>
 </html>
+<img src="" alt="">
