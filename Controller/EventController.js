@@ -52,11 +52,33 @@ class EventController {
             res.status(500).send('Error fetching events.');
         }
     }
-    // static async AddEvents(req,res){
-    //     try{
-
-    //     }
-    // }
+    static async AddEvents(req,res){
+        if (!req.file) {
+            return res.status(400).send('No files were uploaded.');
+          }
+        
+          // Get form data
+          const { name, description, adress, EventStart, EventEnd, EventPlace } = req.body;
+          const image = req.file.filename; // Get the filename of the uploaded image
+        
+          // Insert data into the database
+          try {
+            const event = {
+              name,
+              description,
+              adress,
+              EventStart,
+              EventEnd,
+              EventPlace,
+              image,
+            };
+            await Event.InsertEvent(event);
+            res.redirect('/Admin/Events');
+          } catch (error) {
+            console.log(error);
+            res.status(500).send('Error creating event');
+          }
+    }
 
 }
 

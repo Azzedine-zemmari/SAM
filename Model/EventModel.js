@@ -26,9 +26,17 @@ class EventModel {
         });
     }
     static async InsertEvent(event){
-        return new Promise((resolve,reject)=>{
-            const sql = "INSERT INTO event VALUES()"
-        })
+        const sql = 'INSERT INTO event (name, description, adress, EventStart,EventPlace ,image,EventEnd) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        return new Promise((resolve, reject) => {
+          db.query(sql, [event.name, event.description, event.adress, event.EventStart, event.EventPlace,`/uploads/`+event.image,event.EventEnd], (err, result) => {
+            if (err) {
+              console.error('Database error:', err);
+              return reject(err);
+            }
+            console.log(result)
+            resolve(result);
+          });
+        });
     }
     
 }
