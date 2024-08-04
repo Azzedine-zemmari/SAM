@@ -12,16 +12,7 @@ class UsersController {
 
     }
         
-        static async DeleteUser(req, res) {
-            const userId = req.params.id;
-            try{
-                const User = await Users.DeleteUser(userId);
-                res.status(200).json({ message: 'User deleted successfully' });
-            }catch (error) {
-                console.error('Error Deleting user:', error);
-                res.status(500).send('Error Deleting user');
-            }
-    }
+    
 
 }
 module.exports = UsersController;

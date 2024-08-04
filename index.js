@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const rout = require("./Router/router")
 const bodyParser = require('body-parser');
+const fileUpload = require("express-fileupload")
 const app = express();
 const Port = 3000;
 

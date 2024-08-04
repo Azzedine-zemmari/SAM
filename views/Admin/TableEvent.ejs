@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/TableUser.css">
+</head>
+<body>
+    <body>
+        <table>
+            <thead>
+              <tr>
+                <th>
+                    #
+                </th>
+                <th>image</th>
+                <th>event</th>
+                <th>description</th>
+                <th>adress</th>
+                <th>Jour debut</th>
+                <th>Jour fin</th>
+                <th>event place</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(event => { %>
+              <tr>
+                    <td><%= event.id %></td>
+                    <td><img style="width: 200px; height: 200px; object-fit: contain;" src=<%= event.image %> /></td>
+                     <td><%= event.name %></td>
+                     <td style="width: 500px;"><%= event.description %></td>
+                     <td><%= event.adress %></td>
+                     <td><%= event.formattedDateS %></td>
+                     <td><%= event.formattedDateE %></td>
+                     <td><%= event.EventPlace %></td>
+                     <td></td>
+                    </tr>
+                    <% }); %>
+
+            </tbody>
+          </table>
+    </body>
+</body>
+</html>

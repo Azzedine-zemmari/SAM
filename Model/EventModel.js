@@ -25,12 +25,12 @@ class EventModel {
             });
         });
     }
-    static async CountEvent(){
+    static async InsertEvent(event){
         return new Promise((resolve,reject)=>{
-            const sql = "SELECT COUNT(*) FROM event"
-            db
+            const sql = "INSERT INTO event VALUES()"
         })
     }
+    
 }
 
 module.exports = EventModel;

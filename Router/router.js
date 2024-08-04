@@ -84,11 +84,8 @@ router.get('/Detail/:id', Events.getEventById);
 
 router.get('/Dashboard', CountController.showDashboard);
 
-router.get("/Admin/Events",(req,res)=>{
-    res.send("Admin")
-})
 router.get("/Admin/users",UserController.showUsers)
 
-router.delete('/Admin/users/:id', UserController.DeleteUser);
+router.get("/Admin/Events",Events.GetEvents)
 
 module.exports = router;    

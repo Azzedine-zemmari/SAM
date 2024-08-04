@@ -36,6 +36,28 @@ class EventController {
     static formatDate(dateString) {
         return moment(dateString).format('DD/MM/YYYY');
     }
+    //admin part
+    static async GetEvents(req, res) {
+        try {
+            const result = await Event.getEvent();
+            console.log('Database result:', result); // Log the raw data from the database
+            result.forEach(event => {
+                event.formattedDateS = EventController.formatDate(event.EventStart);
+                event.formattedDateE = EventController.formatDate(event.EventEnd);
+                console.log('Formatted date for event:', event); // Log each event with formatted date
+            });
+            res.render("Admin/TableEvent", { data: result });
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            res.status(500).send('Error fetching events.');
+        }
+    }
+    // static async AddEvents(req,res){
+    //     try{
+
+    //     }
+    // }
+
 }
 
 module.exports = EventController;
