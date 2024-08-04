@@ -38,6 +38,16 @@ class EventModel {
           });
         });
     }
+    static async UpdateEvent(id){
+        return new Promise((resolve, reject) => {
+            const sql = 'select * from event where id = ?'
+            db.query(sql,[id],(err,result)=>{
+                if(!err){
+                    resolve(result);
+                }
+            })
+        })
+    }
     
 }
 

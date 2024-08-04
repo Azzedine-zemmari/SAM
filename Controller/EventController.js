@@ -79,6 +79,24 @@ class EventController {
             res.status(500).send('Error creating event');
           }
     }
+    //show form to update event
+    static async ShowEvent(req,res){
+        const id = req.params.id;
+    try {
+        const event = await Event.UpdateEvent(id);
+        if (event.length) {
+            const eventData = event[0];
+            eventData.EventStart = eventData.EventStart ? new Date(eventData.EventStart).toISOString().split('T')[0] : null;
+            eventData.EventEnd = eventData.EventEnd ? new Date(eventData.EventEnd).toISOString().split('T')[0] : null;
+            res.render("Admin/FormUpdate", { event: eventData });
+        } else {
+            res.status(404).send('Event not found');
+        }
+    } catch (error) {
+        console.error('Error fetching event:', error);
+        res.status(500).send('Error fetching event');
+    }
+    }
 
 }
 

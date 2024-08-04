@@ -94,4 +94,6 @@ router.get("/FormAdd",(req,res)=>{
 })
 router.post("/Add",upload.single("image"),Events.AddEvents)
 
+router.get("/FormUpdate/:id",Events.ShowEvent)
+
 module.exports = router;    
