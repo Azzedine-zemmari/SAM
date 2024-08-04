@@ -59,7 +59,16 @@ class EventModel {
             })
         })
     }
-    
+    static async DeleteEvent(id){
+        return new Promise((resolve,reject)=>{
+            const sql = "delete from event where id = ?"
+            db.query(sql,[id],(err,result)=>{
+                if(!err){
+                    resolve(result)
+                }
+            })
+        })
+    }
 }
 
 module.exports = EventModel;

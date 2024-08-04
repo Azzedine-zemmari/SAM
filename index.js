@@ -3,6 +3,7 @@ require('dotenv').config();
 const rout = require("./Router/router")
 const bodyParser = require('body-parser');
 const multer = require("multer")
+const methodOverride = require('method-override');
 const app = express();
 const Port = 3000;
 
@@ -12,13 +13,13 @@ const db = require('./Config/db');
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
-
 
 //for router
 app.use(rout);
