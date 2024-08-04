@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const Events = require("../Controller/EventController")
 const CountController = require('../Controller/CountController'); // Adjust the path as necessary
 const UserController = require("../Controller/UserController")
+const upload = require("../Middleware/uploadMiddleware")
 
 router.get('/Home', (req, res) => {
     res.render('index');
@@ -87,5 +88,10 @@ router.get('/Dashboard', CountController.showDashboard);
 router.get("/Admin/users",UserController.showUsers)
 
 router.get("/Admin/Events",Events.GetEvents)
+
+router.get("/FormAdd",(req,res)=>{
+    res.render("FormularieEvent")
+})
+router.post("/Add",upload.single("image"),Events.AddEvents)
 
 module.exports = router;    
