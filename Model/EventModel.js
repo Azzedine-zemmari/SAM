@@ -48,6 +48,17 @@ class EventModel {
             })
         })
     }
+
+    static async Update(id,event){
+        return new Promise((resolve,reject)=>{
+            const sql = 'update event set name = ? , description = ? , adress = ? , EventStart = ? , EventPlace  = ? , image = ? , EventEnd = ? where id = ?'
+            db.query(sql,[event.name, event.description, event.adress , event.EventStart , event.EventPlace , `/uploads/`+event.image , event.EventEnd , id],(err,result)=>{
+                if(!err){
+                    resolve(result)
+                }
+            })
+        })
+    }
     
 }
 

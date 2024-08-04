@@ -93,7 +93,9 @@ router.get("/FormAdd",(req,res)=>{
     res.render("FormularieEvent")
 })
 router.post("/Add",upload.single("image"),Events.AddEvents)
-
+//show the update form
 router.get("/FormUpdate/:id",Events.ShowEvent)
+//update the event
+router.post("/updateEvent/:id", upload.single('image'), Events.Update)
 
 module.exports = router;    

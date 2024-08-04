@@ -97,7 +97,19 @@ class EventController {
         res.status(500).send('Error fetching event');
     }
     }
+    static async Update(req,res){
+        const id = req.params.id
+        const {name,description,adress,EventStart,EventEnd,EventPlace} = req.body
+        const image = req.file ? req.file.filename : req.body.currentImage; // Use the new image if uploaded, otherwise keep the current image
 
+        try {
+            await Event.Update(id, { name, description, adress, EventStart, EventEnd, EventPlace, image });
+            res.redirect('/Admin/Events');
+        } catch (error) {
+            console.error('Error updating event:', error);
+            res.status(500).send('Error updating event');
+        }
+    }
 }
 
 module.exports = EventController;
