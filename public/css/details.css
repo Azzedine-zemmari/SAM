@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+:root{
+    --text-color: #242b46;
+}
+.slide {
+    background: url('../images/bg_heading-compressor.jpg') no-repeat center center/cover;
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.slide .slider-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    height: 100%;
+    padding: 30px;
+}
+.infos h3 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    z-index: 1;
+    position: relative;
+    margin-top: 100px;
+}
+.infos button {
+    margin-top: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    padding: 25px 60px;
+    background-color: #f53f7b;
+    color: white;
+    font-weight: 400;
+    font-size: 19px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+.details .infos-container {
+    background-color: #f2f2f2;
+    width: 100%;
+    padding: 30px;
+}
+.details .infos-container .section-1 {
+    display: flex;
+    gap: 40px; 
+    position: relative;
+}
+.details .infos-container .section-1 .swiper {
+    background: white;
+    flex: 2;
+    height: fit-content;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.details .infos-container .section-1 .swiper img{
+    width: fit-content;
+    max-width: 100%;
+}
+.details .infos-container .section-1 .swiper p {
+    margin: 40px 0 20px 0;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.details .infos-container .section-1 .swiper-two {
+    flex: 1;
+    /* height: 400px; */
+}
+@media (max-width: 1200px) {
+    .details .infos-container .section-1 {
+        display: flex;
+        gap: 40px; 
+        position: relative;
+        flex-direction: column;
+    }
+}
+.details .infos-container .section-1 .swiper-two .event-details {
+    background: white;
+    padding: 20px;
+    /* height: 400px; */
+}
+.details .infos-container .section-1 .event-details .header,
+.details .infos-container .section-1 .speakers .header {
+    display: flex;
+    justify-content: space-between;
+}
+.details .infos-container .section-1 .event-details .header .one h3,
+.details .infos-container .section-1 .speakers .header .one h3 {
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+}
+.details .infos-container .section-1 .event-details .one h3::before,
+.details .infos-container .section-1 .speakers .one h3::before {
+    content: "";
+    border-bottom: 2px dashed #f53f7b;
+    position: absolute;
+    top: 24px;
+    width: 80px;
+}
+.details .infos-container .section-1 .event-details .header .two,
+.details .infos-container .section-1 .speakers .header .two {
+    color: grey;
+    font-size: 20px;
+}
+.details .infos-container .section-1 .event-details .body,
+.details .infos-container .section-1 .speakers .body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.details .infos-container .section-1 .event-details .body .item,
+.details .infos-container .section-1 .speakers .body .item {
+    display: flex;
+    align-items: center;
+}
+.details .infos-container .section-1 .event-details .body .item h3,
+.details .infos-container .section-1 .speakers .body .item h3 {
+    font-size: 17px;
+    font-weight: 500;
+    min-width: 90px;
+}
+.details .infos-container .section-1 .event-details .body .item p,
+.details .infos-container .section-1 .speakers .body .item p {
+    margin-left: 20px;
+    color: grey;
+    font-size: 15px;
+}
+.details .infos-container .section-1 .event-details .map {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+.details .infos-container .section-1 .event-details .map iframe {
+    margin: 15px 0;
+}
+.details .infos-container .section-1 .swiper-two .speakers {
+    background: white;
+    margin-top: 20px;
+    padding: 20px;
+}
+.details .infos-container .section-1 .speakers.two .body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.details .infos-container .section-1 .speakers.two .body .item {
+    border: 2px solid rgb(196, 196, 196);
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.details .infos-container .section-1 .speakers.two .body .item img {
+    max-width: 150px;
+}

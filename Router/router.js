@@ -100,4 +100,6 @@ router.post("/updateEvent/:id", upload.single('image'), Events.Update)
 
 router.delete("/FormDelete/:id",Events.Delete)
 
+// router.get('/Detail/:id', Events.getEventDetails);
+
 module.exports = router;    

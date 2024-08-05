@@ -4,17 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/Form.css">
 </head>
 <body>
-    <form action="/Add" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="name">
-        <textarea name="description" id=""></textarea>
-        <input type="text" name="adress">
-        <input type="date" name="EventStart">
-        <input type="date" name="EventEnd">
-        <input type="text" name="EventPlace">
-        <input type="file" name="image">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="login-box">
+        <h2>Insert Event</h2>
+        <form action="/Add" method="post" enctype="multipart/form-data">
+            <div class="user-box">
+                <input type="text" name="name" placeholder="name">
+                <label>Nom</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="description" required="">
+                <label>Description</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="adress" required="">
+                <label>Adress</label>
+            </div>
+            <div class="user-box">
+                <input type="date" name="EventStart" required="" placeholder="event start">
+                <label for="">Event start</label>
+            </div>
+            <div class="user-box">
+                <input type="date" name="EventEnd" required=""  placeholder="event end">
+                <label for="">Event End</label>
+            </div>
+            
+            <div class="user-box">
+                <input type="text" name="EventPlace" required=""  placeholder="event end">
+                <label for="">Event Place</label>
+            </div>
+
+            <div class="user-box">
+                <input type="file" name="image">
+                <label for="">image</label>
+            </div>
+            <div class="user-box">
+                <button type="submit">Envoyer</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
