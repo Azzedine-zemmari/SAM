@@ -4,14 +4,11 @@ const bcrypt = require('bcrypt');
 const Events = require("../Controller/EventController")
 const CountController = require('../Controller/CountController'); // Adjust the path as necessary
 const UserController = require("../Controller/UserController")
+const ParticipationController = require("../Controller/ParticipationController")
 const upload = require("../Middleware/uploadMiddleware")
 
 router.get('/Home', (req, res) => {
-    res.render('index');
-});
-
-router.get("/",(req,res)=>{
-    res.render("form")
+    res.render('index')
 })
 // Register route
 router.post("/register", async (req, res) => {
@@ -52,6 +49,17 @@ router.post("/login", (req, res) => {
         }
 
         const user = result[0];
+          // req.session.user = result[0];
+          req.session.user = {
+            id: result[0].id,
+            email: result[0].email,
+            isAdmin: result[0].isAdmin 
+        };
+        if (result[0].isAdmin == 1) {
+            res.redirect("/Dashboard");
+        } else {
+            res.redirect("/Home");
+        }
         
         // Compare the provided password with the hashed password
         bcrypt.compare(password, user.password, (err, match) => {
@@ -99,6 +107,10 @@ router.get("/FormUpdate/:id",Events.ShowEvent)
 router.post("/updateEvent/:id", upload.single('image'), Events.Update)
 
 router.delete("/FormDelete/:id",Events.Delete)
+
+
+//formEvent 
+router.get("/FormEvent/:name", ParticipationController.getAllParticipate);
 
 // router.get('/Detail/:id', Events.getEventDetails);
 
