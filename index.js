@@ -21,7 +21,9 @@ app.use(session({
     secret: "helloworld", // Use the secret key from the environment variable
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set secure to true if using HTTPS
+    cookie: { secure: false,
+        maxAge: 24 * 60 * 60 * 1000 // duration 24 hours
+     } // Set secure to true if using HTTPS
 }));
 
 

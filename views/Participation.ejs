@@ -3,10 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/Form.css">
+    <title>Event Participation</title>
+    <link rel="stylesheet" href="/css/details.css">
 </head>
 <body>
-    <h1>hello</h1>
+    <div class="details">
+        <div class="slide">
+            <div class="slider-hover"></div>
+            <div class="infos">
+                <% if (eventDetails && eventDetails.event) { %>
+                    <h3><%= eventDetails.event.name %></h3>
+                <% } else { %>
+                    <h3>Event name not available</h3>
+                <% } %>
+                <button><a href="/Participate/<%= eventDetails.event.id %>/<%= eventDetails.event.name %>">Register Event Now</a></button>
+            </div>
+        </div>
+        <div class="infos-container">
+            <div class="section-1">
+                <div class="swiper">
+                    <% if (eventDetails && eventDetails.event && eventDetails.event.image) { %>
+                        <img src="<%= eventDetails.event.image %>" alt="">
+                    <% } %>
+                    <p><%= eventDetails && eventDetails.event ? eventDetails.event.description : 'No description available' %></p>
+                </div>
+                <div class="swiper-two">
+                    <div class="event-details">
+                        <div class="header">
+                            <div class="one"><h3>Event Details</h3></div>
+                            <div class="two"><i class="fa-regular fa-file-lines"></i></div>
+                        </div>
+                        <div class="body">
+                            <div class="item">
+                                <h3>Start Date:</h3>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventStart : 'No start date available' %></p>
+                            </div>
+                            <div class="item">
+                                <h3>End Date:</h3>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventEnd : 'No end date available' %></p>
+                            </div>
+                            <div class="item">
+                                <h3>Address:</h3>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventPlace : 'No address available' %></p>
+                            </div>
+                        </div>
+                        <div class="speakers">
+                            <div class="header">
+                                <div class="one"><h3>Speakers</h3></div>
+                                <div class="two"><i class="fa-solid fa-user-tie"></i></div>
+                            </div>
+                            <div class="body">
+                                <% if (eventDetails && eventDetails.speakers && eventDetails.speakers.length > 0) { %>
+                                    <% eventDetails.speakers.forEach(speaker => { %>
+                                        <div class="item">
+                                            <h3>Name:</h3>
+                                            <p><%= speaker.nom %> <%= speaker.prenom %></p>
+                                        </div>
+                                        <div class="item">
+                                            <h3>Email:</h3>
+                                            <p><%= speaker.email %></p>
+                                        </div>
+                                        <div class="item">
+                                            <h3>Phone:</h3>
+                                            <p><%= speaker.phone %></p>
+                                        </div>
+                                        <div class="item">
+                                            <h3>Description:</h3>
+                                            <p><%= speaker.description %></p>
+                                        </div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <p>No speakers available</p>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="sponsors">
+                            <div class="header">
+                                <div class="one"><h3>Sponsors</h3></div>
+                                <div class="two"><i class="fa-solid fa-user-group"></i></div>
+                            </div>
+                            <div class="body">
+                                <% if (eventDetails && eventDetails.sponsors && eventDetails.sponsors.length > 0) { %>
+                                    <% eventDetails.sponsors.forEach(sponsor => { %>
+                                        <div class="item">
+                                            <img src="<%= sponsor.logo %>" alt="<%= sponsor.nom %>">
+                                            <p><%= sponsor.nom %></p>
+                                        </div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <p>No sponsors available</p>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

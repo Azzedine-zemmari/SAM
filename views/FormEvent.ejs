@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="/css/Form.css">
 </head>
 <body>
-    <form action="/AddParticipation">
+    <form action="/AddParticipation" method="post">
+        <input type="hidden" name="UserId" value="<%= id %>">
+        <div>
+            <input type="hidden" name="eventId" value="<%= eventId %> ">
+        </div>
+        <div>
+            <input type="hidden" name="eventName" value="<%= eventName %> ">
+        </div>
         <div class="user-box">
             <input type="text" name="name">
             <label for="">name</label>
@@ -17,13 +24,10 @@
             <label for="">email</label>
         </div>
         <div class="user-box">
-            <input type="tel" name="phone">
-            <label for="">Phone</label>
+            <input type="text" name="Profession">
+            <label for="">Profession</label>
         </div>
-        <div class="user-box">
-            <input type="text" name="Organization">
-            <label for="">Organization</label>
-        </div>
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>

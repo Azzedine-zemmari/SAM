@@ -4,37 +4,41 @@ const bcrypt = require('bcrypt');
 const Events = require("../Controller/EventController")
 const CountController = require('../Controller/CountController'); // Adjust the path as necessary
 const UserController = require("../Controller/UserController")
-const ParticipationController = require("../Controller/ParticipationController")
+const DetailController = require("../Controller/DetailsController")
+const ParticipateController = require("../Controller/ParticipateController")
 const upload = require("../Middleware/uploadMiddleware")
+const isAuthenticated = require("../Middleware/auth")
+
+
+router.get("/",(req,res)=>{
+    res.render("form")
+})
 
 router.get('/Home', (req, res) => {
     res.render('index')
 })
-// Register route
-router.post("/register", async (req, res) => {
-    const { nom, tel, email , password} = req.body;
-    console.log({nom, tel, email , password})
+router.post('/register', async (req, res) => {
+    const { nom, tel, email, password } = req.body;
     if (!nom || !email || !password || !tel) {
         return res.status(400).send('Please fill in all fields.');
     }
-     // Hash the password
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert the new user if the email does not exist
-    const sql = 'INSERT INTO users (name, email, password , isAdmin , tel) VALUES (?, ?, ?,0,?)';
-    db.query(sql, [nom, email, hashedPassword,tel], (err, result) => {
+    const sql = 'INSERT INTO users (name, email, password, isAdmin, tel) VALUES (?, ?, ?, 0, ?)';
+    db.query(sql, [nom, email, hashedPassword, tel], (err, result) => {
         if (err) {
             console.error('Database error:', err);
             return res.status(500).send('Database error. Please try again later.');
         }
-        return res.render("index");
+        return res.render('index');
     });
 });
 
-//login route
-
-//do the login 
-router.post("/login", (req, res) => {
+// Login route
+router.post('/login', (req, res) => {
     const { email, password } = req.body;
 
     const sql = 'SELECT * FROM users WHERE email = ?';
@@ -49,18 +53,7 @@ router.post("/login", (req, res) => {
         }
 
         const user = result[0];
-          // req.session.user = result[0];
-          req.session.user = {
-            id: result[0].id,
-            email: result[0].email,
-            isAdmin: result[0].isAdmin 
-        };
-        if (result[0].isAdmin == 1) {
-            res.redirect("/Dashboard");
-        } else {
-            res.redirect("/Home");
-        }
-        
+
         // Compare the provided password with the hashed password
         bcrypt.compare(password, user.password, (err, match) => {
             if (err) {
@@ -69,13 +62,18 @@ router.post("/login", (req, res) => {
             }
 
             if (match) {
+                req.session.user = {
+                    id: user.id,
+                    email: user.email,
+                    isAdmin: user.isAdmin
+                };
                 if (user.isAdmin == 1) {
-                    res.redirect("/Home");
+                    return res.redirect('/Dashboard');
                 } else {
-                    res.send("Keep going");
+                    return res.redirect('/Home');
                 }
             } else {
-                res.status(401).send('Invalid email or password.');
+                return res.status(401).send('Invalid email or password.');
             }
         });
     });
@@ -108,9 +106,20 @@ router.post("/updateEvent/:id", upload.single('image'), Events.Update)
 
 router.delete("/FormDelete/:id",Events.Delete)
 
+//details 
+router.get("/FormEvent/:eventId", isAuthenticated,DetailController.getAllDetails);
 
-//formEvent 
-router.get("/FormEvent/:name", ParticipationController.getAllParticipate);
+//form participate
+
+router.get("/Participate/:id/:name",isAuthenticated,(req,res)=>{
+    res.render("FormEvent",{ eventId: req.params.id, eventName: req.params.name , id:req.session.user.id});
+})
+
+router.post("/AddParticipation",ParticipateController.AddParticipate)
+
+//getParticipation
+
+router.get("/Perticipation",ParticipateController.GetParticipate)
 
 // router.get('/Detail/:id', Events.getEventDetails);
 
