@@ -6,6 +6,7 @@ const CountController = require('../Controller/CountController'); // Adjust the 
 const UserController = require("../Controller/UserController")
 const DetailController = require("../Controller/DetailsController")
 const ParticipateController = require("../Controller/ParticipateController")
+const SpeakerController = require("../Controller/SpeakersController")
 const upload = require("../Middleware/uploadMiddleware")
 const isAuthenticated = require("../Middleware/auth")
 
@@ -27,7 +28,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert the new user if the email does not exist
-    const sql = 'INSERT INTO users (name, email, password, isAdmin, tel) VALUES (?, ?, ?, 0, ?)';
+    const sql = 'INSERT INTO users (name, email, password, tel) VALUES (?, ?, ?, ?)';
     db.query(sql, [nom, email, hashedPassword, tel], (err, result) => {
         if (err) {
             console.error('Database error:', err);
@@ -52,10 +53,10 @@ router.post('/login', (req, res) => {
             return res.status(401).send('Invalid email or password.');
         }
 
-        const user = result[0];
+       
 
         // Compare the provided password with the hashed password
-        bcrypt.compare(password, user.password, (err, match) => {
+        bcrypt.compare(password, result[0].password, (err, match) => {
             if (err) {
                 console.error('Error comparing passwords:', err);
                 return res.status(500).send('Error processing your request.');
@@ -63,11 +64,12 @@ router.post('/login', (req, res) => {
 
             if (match) {
                 req.session.user = {
-                    id: user.id,
-                    email: user.email,
-                    isAdmin: user.isAdmin
+                    id: result[0].id,
+                    email: result[0].email,
+                    isAdmin: result[0].isAdmin
                 };
-                if (user.isAdmin == 1) {
+                console.log('User details:', req.session.user); 
+                if (result[0].isAdmin == 1) {
                     return res.redirect('/Dashboard');
                 } else {
                     return res.redirect('/Home');
@@ -95,6 +97,15 @@ router.get('/logout', (req, res) => {
 router.get("/InsertEvent",(req,res)=>{
     res.render("FormularieEvent")
 })
+
+router.get("/Speaker",SpeakerController.getAllSpeaker)
+
+//open insert speaker form 
+router.get("/InsertSpeaker",(req,res)=>{
+    res.render("InsertSpeaker")
+})
+//add speaker
+router.post("/AddSpeaker",upload.single("image"),SpeakerController.AddSpeakers)
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 

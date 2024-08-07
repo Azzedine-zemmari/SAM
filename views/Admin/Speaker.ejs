@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/TableUser.css">
+</head>
+<body>
+        <button><a href="/InsertSpeaker">INSERT</a></button>
+        <table>
+            <thead>
+              <tr>
+                <th>
+                    #
+                </th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>image</th>
+                <th>description</th>
+                <th>event_id</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(speaker => { %>
+              <tr>
+                    <td><%= speaker.id %></td>
+                    <td><%= speaker.nom %></td>
+                    <td><%= speaker.prenom %></td>
+                    <td><img style="width: 200px; height: 200px; object-fit: contain;" src=<%= speaker.image %> /></td>
+                     <td style="width: 500px;"><%= speaker.description %></td>
+                     <td><%= speaker.event_id %></td>
+                     <td><%= speaker.email %></td>
+                     <td><%= speaker.phone %></td>
+                    </tr>
+                    <% }); %>
+
+            </tbody>
+          </table>
+</body>
+</html>

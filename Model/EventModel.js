@@ -13,7 +13,7 @@ class EventModel {
             });
         });
     }
-     static async getEventById(id) {
+    static async getEventById(id) {
         return new Promise((resolve, reject) => {
             const sql = "SELECT * FROM event WHERE id = ?";
             db.query(sql, [id], (err, result) => {
@@ -25,7 +25,7 @@ class EventModel {
             });
         });
     }
-    
+
     static async InsertEvent(event){
         const sql = 'INSERT INTO event (name, description, adress, EventStart,EventPlace ,image,EventEnd) VALUES (?, ?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
