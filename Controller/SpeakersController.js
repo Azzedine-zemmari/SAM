@@ -22,14 +22,13 @@ class SpeakerController{
           // Insert data into the database
           try {
             const speaker = {
-              nom,
-              prenom,
-              image,
-              description,
-              event_id,
-              email,
-              phone
-              
+            nom,
+            prenom,
+            image,
+            description,
+            event_id,
+            email,
+            phone
             };
             await Speaker.InsertSpeaker(speaker);
             res.redirect('/Speaker');

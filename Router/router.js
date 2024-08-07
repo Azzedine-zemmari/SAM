@@ -130,6 +130,11 @@ router.delete("/delete/:id",SponsorController.DeleteSponsor)
 
 //get programm
 router.get("/getProgram",ProgramController.getAllProgrammes)
+router.get("/InsertProgram",(req,res)=>{
+    res.render("InsertProgramme")
+})
+//still has error
+router.post("/AddProgramm", ProgramController.AddProgramm);
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 

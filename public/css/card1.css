@@ -1,0 +1,275 @@
+/* Colors */
+:root {
+    --background-color: #df9253;
+    --color-primary-light: #a9b8c6;
+    --color-primary-dark: #1e0b36;
+    --color-black: #000;
+    --color-gray-dark: #aaa;
+    --color-gray-light: #eee;
+    --color-white: #fff;
+  }
+  
+  /* Mixins */
+  .abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .flex-center {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 37.5em) {
+    .respond-phone {
+      display: contents;
+    }
+  }
+  
+  @media (max-width: 56.25em) {
+    .respond-tab-port {
+      display: contents;
+    }
+  }
+  
+  @media (max-width: 75em) {
+    .respond-tab-land {
+      display: contents;
+    }
+  }
+  
+  @media (min-width: 112.5em) {
+    .respond-big-desktop {
+      display: contents;
+    }
+  }
+  
+  /* Reset */
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    /* 10px as 1rem */
+    font-size: 62.5%;
+  }
+  
+  .respond-tab-land html {
+    /* width < 1200 */
+    font-size: 56.25%; /* 1rem = 9px, 9/16 = 56.25 */
+  }
+  
+  .respond-tab-port html {
+    /* width < 900 */
+    font-size: 50%; /* 1rem = 8px, 8/16 = 50 */
+  }
+  
+  .respond-big-desktop html {
+    font-size: 75%; /* 1rem = 12px, 12/16 = 75 */
+  }
+  
+  body {
+    height: 100vh;
+    /* Dégradé de bleu à couleur cannelle */
+      background: linear-gradient(to right, #DD6E42, #4F6D7A);
+  
+  }
+  
+  .artboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    height: 100%;
+    position: relative;
+  }
+  
+  .respond-phone .artboard {
+    padding: 1rem;
+  }
+  
+  .card {
+    flex: initial;
+    position: relative;
+    height: 52rem;
+    width: 48rem;
+    perspective: 200rem;
+    margin: 2rem;
+  }
+  
+  .card__side {
+    height: 52rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2rem 6rem rgba(var(--color-black), 0.15);
+  }
+  
+  .card__side--front {
+      color:white;
+      background-color: var(--color-primary-light);
+  }
+  
+  .card__side--back {
+      color: white;
+      background-color: var(--color-primary-light);
+    transform: rotateY(180deg);
+  }
+  
+  .card:hover .card__side--back {
+    transform: rotateY(0);
+  }
+  
+  .card:hover .card__side--front {
+    transform: rotateY(-180deg);
+  }
+  
+  /* Front side of the card */
+  .card__theme {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+  }
+  
+  .card__theme-box {
+    color: var(--color-white);
+    margin-bottom: 8rem;
+  }
+  
+  .card__subject {
+    font-family: 'Inconsolata', monospace;
+    letter-spacing: 0.8rem;
+    font-size: 1.6rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  
+  .card__title {
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    font-weight: 100;
+    text-align: center;
+  }
+  
+  /* Back side of the card */
+  .card__cover {
+    position: relative;
+    background-size: cover;
+    height: 14rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-image:
+      url('https://cdn.spacetelescope.org/archives/images/screen/heic0406a.jpg');
+  }
+  
+  .card__heading {
+    text-align: center;
+    color: var(--color-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+  }
+  
+  .card__heading-span {
+    font-family: 'VT323', monospace;
+    font-size: 4.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    color: var(--color-white);
+  }
+  
+  .card__details {
+    font-family: 'Inconsolata', monospace;
+    padding: 4rem 2rem;
+  }
+  
+  .card__details ul {
+    list-style: none;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .card__details ul li {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+  
+  .card__details ul li:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-light);
+  }
+  
+  /* Responsivity */
+  @media only screen and (max-width: 37.5em), only screen and (hover: none) {
+    .card {
+      height: auto;
+      border-radius: 3px;
+      background-color: var(--color-white);
+      box-shadow: 0 2rem 6rem rgba(var(--color-black), 0.15);
+    }
+  
+    .card__side {
+      height: auto;
+      position: relative;
+      box-shadow: none;
+    }
+  
+    .card__side--front {
+      clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+    }
+  
+    .card__side--back {
+      transform: rotateY(0);
+    }
+  
+    .card:hover .card__side--front {
+      transform: rotateY(0);
+    }
+  
+    .card__details {
+      padding: 3rem 2rem;
+    }
+  
+    /* Front side responsive styling */
+    .card__theme {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(0);
+      width: 100%;
+      padding: 5rem 4rem 1.5rem 4rem;
+      text-align: right;
+    }
+  
+    .card__theme-box {
+      margin-bottom: 1.5rem;
+    }
+  
+    .card__title {
+      font-size: 4rem;
+    }
+  }
+  

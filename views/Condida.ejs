@@ -3,16 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Animated Card</title>
+    <link rel="stylesheet" href="/css/card1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <% data.forEach(cond => { %>
-        <div>
-            <h1><%= cond.name %></h1>
-            <p><%= cond.email %></p>
-            <p><%= cond.profession %></p>
-            <p><%= cond.status %></p>
-        </div>
-    <% }); %>
+    <div class="artboard">
+        <% data.forEach(cond => { %>
+            <div class="card">
+                <div class="card__side card__side--back">
+                    <div class="card__cover">
+                        <h4 class="card__heading">
+                            <span class="card__heading-span"><%= cond.eventName %></span>
+                        </h4>
+                    </div>
+                    <div class="card__details">
+                        <ul>
+                            <li><%= cond.name %></li>
+                            <li><%= cond.email %></li>
+                            <li><%= cond.profession %></li>
+                            <li><%= cond.status %></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card__side card__side--front">
+                    <div class="card__theme">
+                        <div class="card__theme-box">
+                            <p class="card__subject">Rejoignez nous!</p>
+                            <p class="card__title">A notre evenement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
 </body>
 </html>

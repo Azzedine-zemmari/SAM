@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/Form.css">
+    <link rel="stylesheet" href="/css/FormParticipate.css">
 </head>
 <body>
-    <form action="/AddParticipation" method="post">
-        <input type="hidden" name="UserId" value="<%= id %>">
-        <div>
-            <input type="hidden" name="eventId" value="<%= eventId %> ">
-        </div>
-        <div>
-            <input type="hidden" name="eventName" value="<%= eventName %> ">
-        </div>
-        <div class="user-box">
-            <input type="text" name="name">
-            <label for="">name</label>
-        </div>
-        <div class="user-box">
-            <input type="email" name="email">
-            <label for="">email</label>
-        </div>
-        <div class="user-box">
-            <input type="text" name="Profession">
-            <label for="">Profession</label>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="ring">
+        <i style="--clr:#DD6E42;"></i>
+        <i style="--clr:#4F6D7A;"></i>
+        <i style="--clr:#F2DAB2;"></i>
+    </div>
+        <form action="/AddParticipation" method="post" class="login">
+            <h2>Participate</h2>
+            <input type="hidden" name="UserId" value="<%= id %>">
+            <div>
+                <input type="hidden" name="eventId" value="<%= eventId %> ">
+            </div>
+            <div>
+                <input type="hidden" name="eventName" value="<%= eventName %> ">
+            </div>
+            <div class="inputBx">
+                <input type="text"  name="name" placeholder="Nom">
+            </div>
+            <div class="inputBx">
+                <input type="text" name="email" placeholder="Email">
+            </div>
+            <div class="inputBx">
+                <input type="text" name="Profession" placeholder="Profession">
+            </div>
+            <div class="inputBx">
+                <input type="submit" value="Participer">
+            </div>
+        </form>
 </body>
 </html>

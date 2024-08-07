@@ -33,6 +33,7 @@ class ParticipateController {
                 res.status(500).send('Error fetching Praticipate.');
             }
     }
+    
 }
 
 module.exports = ParticipateController
