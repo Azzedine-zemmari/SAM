@@ -38,6 +38,34 @@ class SpeakerController{
             res.status(500).send('Error creating event');
           }
     }
+    //show the update form 
+    static async ShowSpeakerById(req,res){
+        const id = req.params.id;
+    try {
+        const speaker = await Speaker.GetSpeakerBtId(id)
+        
+        res.render("Admin/FormUpdateSpeaker", {speaker});
+        console.log("this is the data speaker ",speaker )
+        
+    } catch (error) {
+        console.error('Error fetching speaker:', error);
+        res.status(500).send('Error fetching event');
+    }
+    }
+    static async UpdateSpeaker(req, res) {
+        const id = req.params.id;
+        const { nom, prenom, description, event_id, email, phone } = req.body;
+        const image = req.file ? req.file.filename : req.body.currentImage; // Use the new image if uploaded, otherwise keep the current image
+    
+        try {
+            await Speaker.UpdateSpeaker(id, { nom, prenom, image, description, event_id, email, phone, currentImage: req.body.currentImage });
+            res.redirect('/Speaker');
+        } catch (error) {
+            console.error('Error updating speaker:', error);
+            res.status(500).send('Error updating speaker');
+        }
+    }
+    
 }
 
 module.exports = SpeakerController;

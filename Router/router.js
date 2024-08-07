@@ -106,6 +106,12 @@ router.get("/InsertSpeaker",(req,res)=>{
 })
 //add speaker
 router.post("/AddSpeaker",upload.single("image"),SpeakerController.AddSpeakers)
+//update form 
+router.get("/update/:id",upload.single("image"),SpeakerController.ShowSpeakerById)
+//update speaker
+router.post("/updateEventspeaker/:id",upload.single("image"),SpeakerController.UpdateSpeaker)
+
+// router.post("/updateEventSpeaker/:id",)
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 
