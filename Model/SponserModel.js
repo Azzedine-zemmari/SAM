@@ -24,6 +24,16 @@ class SponserModel{
           });
         });
     }
+    static async DeleteSponsor(id){
+        return new Promise((resolve,reject)=>{
+            const sql = "delete from sponsor where id = ?"
+            db.query(sql,[id],(err,result)=>{
+                if(!err){
+                    resolve(result)
+                }
+            })
+        })
+    }
 }
 
 module.exports = SponserModel;

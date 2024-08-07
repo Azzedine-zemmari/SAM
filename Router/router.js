@@ -8,6 +8,7 @@ const DetailController = require("../Controller/DetailsController")
 const ParticipateController = require("../Controller/ParticipateController")
 const SpeakerController = require("../Controller/SpeakersController")
 const SponsorController = require("../Controller/SponsorController")
+const ProgramController = require("../Controller/ProgrammeController")
 const upload = require("../Middleware/uploadMiddleware")
 const isAuthenticated = require("../Middleware/auth")
 
@@ -125,6 +126,10 @@ router.get("/InsertSponsr",(req,res)=>{
 })
 router.post("/AddSponsor",upload.single("logo"),SponsorController.AddSponsor)
 
+router.delete("/delete/:id",SponsorController.DeleteSponsor)
+
+//get programm
+router.get("/getProgram",ProgramController.getAllProgrammes)
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 

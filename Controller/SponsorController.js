@@ -35,6 +35,18 @@ class SpeakerController{
             res.status(500).send('Error creating sponsors');
           }
     }
+    static async DeleteSponsor(req,res){
+        const id = req.params.id
+        try {
+            console.log(`Attempting to delete event with ID: ${id}`); // Debug log
+            const result = await Sponsor.DeleteSponsor(id);
+            console.log(`Deletion result: ${result}`); // Debug log
+            res.redirect("/Dashboard")
+        } catch (error) {
+            console.error('Error deleting sponsor:', error);
+            res.status(500).send('Error deleting sponsor');
+        }
+    }
 }
 
 module.exports = SpeakerController
