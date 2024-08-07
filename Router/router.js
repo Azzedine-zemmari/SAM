@@ -7,6 +7,7 @@ const UserController = require("../Controller/UserController")
 const DetailController = require("../Controller/DetailsController")
 const ParticipateController = require("../Controller/ParticipateController")
 const SpeakerController = require("../Controller/SpeakersController")
+const SponsorController = require("../Controller/SponsorController")
 const upload = require("../Middleware/uploadMiddleware")
 const isAuthenticated = require("../Middleware/auth")
 
@@ -115,7 +116,15 @@ router.post("/updateEventspeaker/:id",upload.single("image"),SpeakerController.U
 
 router.delete("/DeleteSpeaker/:id",SpeakerController.DeleteSpeaker)
 
-// router.post("/updateEventSpeaker/:id",)
+//sponsors
+
+router.get("/GetSponsors",SponsorController.getAllSponsor)
+
+router.get("/InsertSponsr",(req,res)=>{
+    res.render("InsertSponsors")
+})
+router.post("/AddSponsor",upload.single("logo"),SponsorController.AddSponsor)
+
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 
