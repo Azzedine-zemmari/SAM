@@ -79,6 +79,17 @@ router.post('/login', (req, res) => {
     });
 });
 
+// Logout route
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).send('Error :(');
+        }
+        res.redirect('/'); // Redirect to the login page after logout
+    });
+});
+
+
 //Admin
 
 router.get("/InsertEvent",(req,res)=>{

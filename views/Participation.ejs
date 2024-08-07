@@ -99,6 +99,15 @@
                 </div>
             </div>
         </div>
+        <div>
+            <h2>Program</h2>
+            <% eventDetails.program.forEach(day => { %>
+                <div>
+                    <h3><%= day.jour %></h3>
+                    <p><%= day.description %></p>
+                </div>
+            <% }); %>
+        </div>
     </div>
 </body>
 </html>

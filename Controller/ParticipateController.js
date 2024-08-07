@@ -24,7 +24,8 @@ class ParticipateController {
     }
     static async GetParticipate(req,res){
             try {
-                const result = await participate.showParticipate();
+                const user = req.session.user.id
+                const result = await participate.showParticipate(user);
                 console.log("this is participate",result)
                 res.render("Condida", { data: result });
             } catch (error) {

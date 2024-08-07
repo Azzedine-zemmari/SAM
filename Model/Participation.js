@@ -26,10 +26,10 @@ static async InsertParticipate(pro) {
     );
     });
 }
-static async showParticipate(){
-    const sql = "SELECT * FROM candidature"
+static async showParticipate(id){
+    const sql = "SELECT * FROM candidature where user_id = ? "
     return new Promise((resolve,reject)=>{
-        db.query(sql,(err,result)=>{
+        db.query(sql,[id],(err,result)=>{
             if(!err){
                 resolve(result)
                 console.log("this is the candida:",result)

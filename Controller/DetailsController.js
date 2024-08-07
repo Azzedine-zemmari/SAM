@@ -12,6 +12,10 @@ class Participation{
              // Format the dates using Moment.js
             eventDetails.event.EventStart = moment(eventDetails.event.EventStart).format('YYYY/MM/DD');
             eventDetails.event.EventEnd = moment(eventDetails.event.EventEnd).format('YYYY/MM/DD');
+             // Format the dates in the program array
+             eventDetails.program.forEach(day => {
+                day.jour = moment(day.jour).format('YYYY/MM/DD');
+            });
 
             console.log("Event Details:", eventDetails); // Debugging
             res.render('Participation', {eventDetails });

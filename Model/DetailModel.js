@@ -18,6 +18,7 @@ class DetailModel {
 
                 const speakersSql = 'SELECT * FROM speaker WHERE event_id = ?';
                 const sponsorsSql = 'SELECT * FROM sponsor WHERE event_id = ?';
+                const programSql = 'SELECT * FROM programme WHERE event_id = ? ORDER BY jour';
 
                 db.query(speakersSql, [eventId], (err, speakersResult) => {
                     if (err) {
@@ -35,14 +36,24 @@ class DetailModel {
 
                         console.log('Sponsors result:', sponsorsResult);
 
-                        const eventDetails = {
-                            event: eventResult[0],
-                            speakers: speakersResult,
-                            sponsors: sponsorsResult
-                        };
+                        db.query(programSql, [eventId], (err, programResult) => {
+                            if (err) {
+                                console.error('Database error in program query:', err);
+                                return reject(err);
+                            }
 
-                        resolve(eventDetails);
-                        console.log("Event details resolved:", eventDetails);
+                            console.log('Program result:', programResult);
+
+                            const eventDetails = {
+                                event: eventResult[0],
+                                speakers: speakersResult,
+                                sponsors: sponsorsResult,
+                                program: programResult
+                            };
+
+                            resolve(eventDetails);
+                            console.log("Event details resolved:", eventDetails);
+                        });
                     });
                 });
             });
