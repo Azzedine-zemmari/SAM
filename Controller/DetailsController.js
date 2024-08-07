@@ -1,13 +1,13 @@
 const Detail = require("../Model/DetailModel");
 const moment = require('moment');
-class Participation{
+class DetailController{
     static async getAllDetails(req, res) {
         try {
-            const eventId = req.params.eventId; // Get event ID from URL parameter
+            const id = req.params.eventId; // Get event ID from URL parameter
 
             // console.log("this is user",user)
             // Fetch event details with speakers and sponsors
-            const eventDetails = await Detail.getEventDetails(eventId);
+            const eventDetails = await Detail.getEventDetails(id);
 
              // Format the dates using Moment.js
             eventDetails.event.EventStart = moment(eventDetails.event.EventStart).format('YYYY/MM/DD');
@@ -26,4 +26,4 @@ class Participation{
     }
 }
 
-module.exports = Participation
+module.exports = DetailController

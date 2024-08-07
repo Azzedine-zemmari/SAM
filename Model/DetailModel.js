@@ -9,6 +9,7 @@ class DetailModel {
                     console.error('Database error in event query:', err);
                     return reject(err);
                 }
+
                 if (eventResult.length === 0) {
                     console.error('No event found with id:', eventId);
                     return reject(new Error('Event not found.'));

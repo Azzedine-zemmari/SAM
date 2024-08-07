@@ -128,7 +128,7 @@ router.post("/AddSponsor",upload.single("logo"),SponsorController.AddSponsor)
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
 
-router.get('/Detail/:id', Events.getEventById);
+// router.get('/Detail/:id', Events.getEventById);
 
 router.get('/Dashboard', CountController.showDashboard);
 
