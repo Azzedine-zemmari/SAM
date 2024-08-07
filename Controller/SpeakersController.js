@@ -65,6 +65,18 @@ class SpeakerController{
             res.status(500).send('Error updating speaker');
         }
     }
+    static async DeleteSpeaker(req,res){
+        const id = req.params.id
+        try {
+            console.log(`Attempting to delete event with ID: ${id}`); // Debug log
+            const result = await Speaker.DeleteSpeaker(id);
+            console.log(`Deletion result: ${result}`); // Debug log
+            res.redirect("/Dashboard")
+        } catch (error) {
+            console.error('Error deleting event:', error);
+            res.status(500).send('Error deleting event');
+        }
+    }
     
 }
 

@@ -60,6 +60,16 @@ class SpeakerModel {
             });
         });
     }
+    static async DeleteSpeaker(id){
+        return new Promise((resolve,reject)=>{
+            const sql = "delete from speaker where id = ?"
+            db.query(sql,[id],(err,result)=>{
+                if(!err){
+                    resolve(result)
+                }
+            })
+        })
+    }
     
 }
 

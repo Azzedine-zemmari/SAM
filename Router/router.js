@@ -111,6 +111,10 @@ router.get("/update/:id",upload.single("image"),SpeakerController.ShowSpeakerByI
 //update speaker
 router.post("/updateEventspeaker/:id",upload.single("image"),SpeakerController.UpdateSpeaker)
 
+//delete speaker
+
+router.delete("/DeleteSpeaker/:id",SpeakerController.DeleteSpeaker)
+
 // router.post("/updateEventSpeaker/:id",)
 //get all event
 router.get("/GetEvent", Events.getAllEvent)
