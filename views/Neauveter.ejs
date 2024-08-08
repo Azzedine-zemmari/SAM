@@ -51,21 +51,15 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="testimonial-slider owl-carousel">
-                        <div class="ts-item">
-                            <h2>Séminaire sur l'Agriculture de Précision et la Mécanisation</h2>
-                            <p>Le projet SAM a organisé un séminaire sur les technologies de précision et la mécanisation agricole, avec des ateliers pratiques et des démonstrations sur le terrain.</p>
-                          
-                           
-                        </div>
-                        <div class="ts-item">
-                            <h2>Forum de Partenariat Public-Privé pour la Mécanisation Agricole</h2>
-                            <p>After a construction project took longer than expected, my husband, my daughter and I
-                                needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
-                                city, neighborhood and the types of housing options available and absolutely love our
-                                vacation at Sona Hotel.</p>
-                        </div>
+                        <% data.forEach(function(item) { %>
+                            <div class="ts-item">
+                                <h2><%= item.title %></h2>
+                                <p><%= item.description %></p>
+                            </div>
+                        <% }); %>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>

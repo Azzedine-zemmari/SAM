@@ -9,6 +9,7 @@ const ParticipateController = require("../Controller/ParticipateController")
 const SpeakerController = require("../Controller/SpeakersController")
 const SponsorController = require("../Controller/SponsorController")
 const ProgramController = require("../Controller/ProgrammeController")
+const ActualiterController = require("../Controller/ActualiterController")
 const upload = require("../Middleware/uploadMiddleware")
 const isAuthenticated = require("../Middleware/auth")
 
@@ -28,10 +29,15 @@ router.get('/decouvrir', (req, res) => {
 router.get("/aprops",(req,res)=>{
     res.render("Apropos")
 })
+// router.get("/Actualiter",(req,res)=>{
+//     res.render("Neauveter")
+// })
 
-router.get("/Actualiter",(req,res)=>{
-    res.render("Neauveter")
-})
+router.get("/Actualiter",ActualiterController.getAllDetails)
+// router.get("/insert",(req,res)=>{
+//     res.render("Admin/InsertActualiter")
+// })
+// router.post("/InsertActualiter",ActualiterController.AddAct)
 router.post('/register', async (req, res) => {
     const { nom, tel, email, password } = req.body;
     if (!nom || !email || !password || !tel) {
