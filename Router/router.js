@@ -15,7 +15,7 @@ const isAuthenticated = require("../Middleware/auth")
 
 
 router.get("/",(req,res)=>{
-    res.render("Home",{ user : req.session.id })
+    res.render("Home")
 })
 
 router.get('/login', (req, res) => {
@@ -29,9 +29,7 @@ router.get('/decouvrir', (req, res) => {
 router.get("/aprops",(req,res)=>{
     res.render("Apropos")
 })
-// router.get("/Actualiter",(req,res)=>{
-//     res.render("Neauveter")
-// })
+// 
 
 router.get("/Actualiter",ActualiterController.getAllDetails)
 // router.get("/insert",(req,res)=>{
@@ -89,7 +87,7 @@ router.post('/login', (req, res) => {
                 if (result[0].isAdmin == 1) {
                     return res.redirect('/Dashboard');
                 } else {
-                    return res.redirect('/Home');
+                    return res.redirect('/');
                 }
             } else {
                 return res.status(401).send('Invalid email or password.');
