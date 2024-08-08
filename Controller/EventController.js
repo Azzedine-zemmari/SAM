@@ -6,16 +6,26 @@ class EventController {
         try {
             const result = await Event.getEvent();
             console.log('Database result:', result); // Log the raw data from the database
+    
+            // Check if there is any data
+            if (!result || result.length === 0) {
+                console.log('No events found.');
+                res.render("index", { data: [], message: 'No events found.' });
+                return;
+            }
+    
             result.forEach(event => {
                 event.formattedDate = EventController.formatDate(event.EventDate);
                 console.log('Formatted date for event:', event); // Log each event with formatted date
             });
-            res.render("eventsSection", { data: result });
+    
+            res.render("index", { data: result });
         } catch (error) {
             console.error('Error fetching events:', error);
             res.status(500).send('Error fetching events.');
         }
     }
+    
 
     // static async getEventById(req, res) {
     //     try {

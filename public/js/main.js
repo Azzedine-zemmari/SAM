@@ -1,147 +1,109 @@
-jQuery(document).ready(function( $ ) {
+/*  ---------------------------------------------------
+    Template Name: Sona
+    Description: Sona Hotel Html Template
+    Author: Colorlib
+    Author URI: https://colorlib.com
+    Version: 1.0
+    Created: Colorlib
+---------------------------------------------------------  */
 
-  // Back to top button
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
-      $('.back-to-top').fadeIn('slow');
-    } else {
-      $('.back-to-top').fadeOut('slow');
-    }
-  });
-  $('.back-to-top').click(function(){
-    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
-    return false;
-  });
+'use strict';
 
-  // Header fixed on scroll
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
-      $('#header').addClass('header-scrolled');
-    } else {
-      $('#header').removeClass('header-scrolled');
-    }
-  });
+(function ($) {
 
-  if ($(window).scrollTop() > 100) {
-    $('#header').addClass('header-scrolled');
-  }
-
-  // Real view height for mobile devices
-  if (window.matchMedia("(max-width: 767px)").matches) {
-    $('#intro').css({ height: $(window).height() });
-  }
-
-  // Initiate the wowjs animation library
-  new WOW().init();
-
-  // Initialize Venobox
-  $('.venobox').venobox({
-    bgcolor: '',
-    overlayColor: 'rgba(6, 12, 34, 0.85)',
-    closeBackground: '',
-    closeColor: '#fff'
-  });
-
-  // Initiate superfish on nav menu
-  $('.nav-menu').superfish({
-    animation: {
-      opacity: 'show'
-    },
-    speed: 400
-  });
-
-  // Mobile Navigation
-  if ($('#nav-menu-container').length) {
-    var $mobile_nav = $('#nav-menu-container').clone().prop({
-      id: 'mobile-nav'
-    });
-    $mobile_nav.find('> ul').attr({
-      'class': '',
-      'id': ''
-    });
-    $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
-    $('body').append('<div id="mobile-body-overly"></div>');
-    $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
-
-    $(document).on('click', '.menu-has-children i', function(e) {
-      $(this).next().toggleClass('menu-item-active');
-      $(this).nextAll('ul').eq(0).slideToggle();
-      $(this).toggleClass("fa-chevron-up fa-chevron-down");
+    /*------------------
+        Preloader
+    --------------------*/
+    $(window).on('load', function () {
+        $(".loader").fadeOut();
+        $("#preloder").delay(200).fadeOut("slow");
     });
 
-    $(document).on('click', '#mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-      $('#mobile-body-overly').toggle();
+    /*------------------
+        Background Set
+    --------------------*/
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
     });
 
-    $(document).click(function(e) {
-      var container = $("#mobile-nav, #mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-      }
+    //Offcanvas Menu
+    $(".canvas-open").on('click', function () {
+        $(".offcanvas-menu-wrapper").addClass("show-offcanvas-menu-wrapper");
+        $(".offcanvas-menu-overlay").addClass("active");
     });
-  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-    $("#mobile-nav, #mobile-nav-toggle").hide();
-  }
 
-  // Smooth scroll for the menu and links with .scrollto classes
-  $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      if (target.length) {
-        var top_space = 0;
+    $(".canvas-close, .offcanvas-menu-overlay").on('click', function () {
+        $(".offcanvas-menu-wrapper").removeClass("show-offcanvas-menu-wrapper");
+        $(".offcanvas-menu-overlay").removeClass("active");
+    });
 
-        if ($('#header').length) {
-          top_space = $('#header').outerHeight();
+    // Search model
+    $('.search-switch').on('click', function () {
+        $('.search-model').fadeIn(400);
+    });
 
-          if( ! $('#header').hasClass('header-fixed') ) {
-            top_space = top_space - 20;
-          }
-        }
+    $('.search-close-switch').on('click', function () {
+        $('.search-model').fadeOut(400, function () {
+            $('#search-input').val('');
+        });
+    });
 
-        $('html, body').animate({
-          scrollTop: target.offset().top - top_space
-        }, 1500, 'easeInOutExpo');
+    /*------------------
+		Navigation
+	--------------------*/
+    $(".mobile-menu").slicknav({
+        prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true
+    });
 
-        if ($(this).parents('.nav-menu').length) {
-          $('.nav-menu .menu-active').removeClass('menu-active');
-          $(this).closest('li').addClass('menu-active');
-        }
+    /*------------------
+        Hero Slider
+    --------------------*/
+   $(".hero-slider").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: true,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+        mouseDrag: false
+    });
 
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-        return false;
-      }
-    }
-  });
+    /*------------------------
+		Testimonial Slider
+    ----------------------- */
+    $(".testimonial-slider").owlCarousel({
+        items: 1,
+        dots: false,
+        autoplay: true,
+        loop: true,
+        smartSpeed: 1200,
+        nav: true,
+        navText: ["<i class='arrow_left'></i>", "<i class='arrow_right'></i>"]
+    });
 
-  // Gallery carousel (uses the Owl Carousel library)
-  $(".gallery-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    center:true,
-    responsive: { 0: { items: 1 }, 768: { items: 3 }, 992: { items: 4 }, 1200: {items: 5}
-    }
-  });
+    /*------------------
+        Magnific Popup
+    --------------------*/
+    $('.video-popup').magnificPopup({
+        type: 'iframe'
+    });
 
-  // Buy tickets select the ticket type on click
-  $('#buy-ticket-modal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var ticketType = button.data('ticket-type');
-    var modal = $(this);
-    modal.find('#ticket-type').val(ticketType);
-  })
+    /*------------------
+		Date Picker
+	--------------------*/
+    $(".date-input").datepicker({
+        minDate: 0,
+        dateFormat: 'dd MM, yy'
+    });
 
-// custom code
+    /*------------------
+		Nice Select
+	--------------------*/
+    $("select").niceSelect();
 
-});
+})(jQuery);

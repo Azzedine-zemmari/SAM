@@ -10,6 +10,7 @@ class EventModel {
                     return reject(err);
                 }
                 resolve(result);
+                console.log("events",result)
             });
         });
     }
