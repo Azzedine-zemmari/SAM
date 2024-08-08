@@ -4,6 +4,7 @@ const rout = require("./Router/router")
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const multer = require("multer")
+const expressLayouts = require("express-ejs-layouts")
 const methodOverride = require('method-override');
 const app = express();
 const Port = 3000;
@@ -35,7 +36,8 @@ app.use(express.static('public'));
 
 //for router
 app.use(rout);
-
+app.use(expressLayouts);
+app.set(expressLayouts,'layout/index')
 // Start the server
 app.listen(Port, () => {
     console.log(`Server is running at http://localhost:${Port}`);

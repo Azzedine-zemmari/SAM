@@ -10,7 +10,7 @@ class EventController {
             // Check if there is any data
             if (!result || result.length === 0) {
                 console.log('No events found.');
-                res.render("index", { data: [], message: 'No events found.' });
+                res.render("eventsSection", { data: [], message: 'No events found.' });
                 return;
             }
     
@@ -19,7 +19,7 @@ class EventController {
                 console.log('Formatted date for event:', event); // Log each event with formatted date
             });
     
-            res.render("index", { data: result });
+            res.render("eventsSection", { data: result });
         } catch (error) {
             console.error('Error fetching events:', error);
             res.status(500).send('Error fetching events.');

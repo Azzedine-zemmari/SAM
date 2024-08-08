@@ -14,11 +14,23 @@ const isAuthenticated = require("../Middleware/auth")
 
 
 router.get("/",(req,res)=>{
-    res.render("login")
+    res.render("Home",{ user : req.session.id })
 })
 
-router.get('/Home', (req, res) => {
-    res.render('index')
+router.get('/login', (req, res) => {
+    res.render('login')
+})
+
+router.get('/decouvrir', (req, res) => {
+    res.render('decouvrir')
+})
+
+router.get("/aprops",(req,res)=>{
+    res.render("Apropos")
+})
+
+router.get("/Actualiter",(req,res)=>{
+    res.render("Neauveter")
 })
 router.post('/register', async (req, res) => {
     const { nom, tel, email, password } = req.body;
@@ -36,7 +48,7 @@ router.post('/register', async (req, res) => {
             console.error('Database error:', err);
             return res.status(500).send('Database error. Please try again later.');
         }
-        return res.render('index');
+        return res.render('Home');
     });
 });
 
@@ -86,7 +98,7 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.status(500).send('Error :(');
         }
-        res.redirect('/'); // Redirect to the login page after logout
+        res.redirect('/login'); // Redirect to the login page after logout
     });
 });
 

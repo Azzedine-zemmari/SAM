@@ -713,7 +713,18 @@ ul, ol {
 /*------------------------
   Home Page Room Section 
 -------------------------*/
-
+.row{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 22px auto;
+	width: 100%;
+}
+.container{
+	padding: 0;
+	width: 100%;
+	margin: 0 auto ;
+}
 .hp-room-items {
 	margin-left: -15px;
 	margin-right: -15px;
