@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participation Management</title>
+    <link rel="stylesheet" href="/css/ParticipationView.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="side-menu">
+            <%- include('../layout/SideDash') %>
+        </div>
+        <div class="content-wrap">
+            <h1>Manage Participation</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Profession</th>
+                        <th>Event Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(participation => { %>
+                    <tr>
+                        <td><%= participation.id %></td>
+                        <td><%= participation.name %></td>
+                        <td><%= participation.email %></td>
+                        <td><%= participation.profession %></td>
+                        <td><%= participation.eventName || 'N/A' %></td>
+                        <td><%= participation.status %></td>
+                        <td>
+                            <% if (participation.status === 'no valide') { %>
+                            <form action="/validateParticipation/<%= participation.id %>" method="POST">
+                                <button type="submit">Validate</button>
+                            </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

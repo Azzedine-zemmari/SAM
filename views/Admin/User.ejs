@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table user</title>
+    <link rel="stylesheet" href="/css/TableUser.css">
+</head>
+<body>
+  <div class="dashboard">
+    <div class="side-menu">
+        <%- include('../layout/SideDash') %>
+    </div>
+    <div class="content-wrap">
+    <table>
+        <thead>
+          <tr>
+            <th>user</th>
+            <th>email</th>
+            <th>tel</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(user => { %>
+          <tr>
+                 <td><%= user.name %></td>
+                 <td><%= user.email %></td>
+                 <td><%= user.tel %></td>
+                </tr>
+                <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

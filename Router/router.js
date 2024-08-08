@@ -14,7 +14,7 @@ const isAuthenticated = require("../Middleware/auth")
 
 
 router.get("/",(req,res)=>{
-    res.render("form")
+    res.render("login")
 })
 
 router.get('/Home', (req, res) => {
@@ -54,9 +54,6 @@ router.post('/login', (req, res) => {
         if (result.length === 0) {
             return res.status(401).send('Invalid email or password.');
         }
-
-       
-
         // Compare the provided password with the hashed password
         bcrypt.compare(password, result[0].password, (err, match) => {
             if (err) {
@@ -97,14 +94,14 @@ router.get('/logout', (req, res) => {
 //Admin
 
 router.get("/InsertEvent",(req,res)=>{
-    res.render("FormularieEvent")
+    res.render("Admin/InsertEvent")
 })
 
 router.get("/Speaker",SpeakerController.getAllSpeaker)
 
 //open insert speaker form 
 router.get("/InsertSpeaker",(req,res)=>{
-    res.render("InsertSpeaker")
+    res.render("Admin/InsertSpeaker")
 })
 //add speaker
 router.post("/AddSpeaker",upload.single("image"),SpeakerController.AddSpeakers)
@@ -122,7 +119,7 @@ router.delete("/DeleteSpeaker/:id",SpeakerController.DeleteSpeaker)
 router.get("/GetSponsors",SponsorController.getAllSponsor)
 
 router.get("/InsertSponsr",(req,res)=>{
-    res.render("InsertSponsors")
+    res.render("Admin/InsertSponsors")
 })
 router.post("/AddSponsor",upload.single("logo"),SponsorController.AddSponsor)
 
@@ -131,7 +128,7 @@ router.delete("/delete/:id",SponsorController.DeleteSponsor)
 //get programm
 router.get("/getProgram",ProgramController.getAllProgrammes)
 router.get("/InsertProgram",(req,res)=>{
-    res.render("InsertProgramme")
+    res.render("Admin/InsertProgramme")
 })
 //still has error
 router.post("/AddProgramm", ProgramController.AddProgramm);
@@ -147,7 +144,7 @@ router.get("/Admin/users",UserController.showUsers)
 router.get("/Admin/Events",Events.GetEvents)
 
 router.get("/FormAdd",(req,res)=>{
-    res.render("FormularieEvent")
+    res.render("Admin/InsertEvent")
 })
 router.post("/Add",upload.single("image"),Events.AddEvents)
 //show the update form
@@ -163,15 +160,19 @@ router.get("/FormEvent/:eventId", isAuthenticated,DetailController.getAllDetails
 //form participate
 
 router.get("/Participate/:id/:name",isAuthenticated,(req,res)=>{
-    res.render("FormEvent",{ eventId: req.params.id, eventName: req.params.name , id:req.session.user.id});
+    res.render("ParticipateForm",{ eventId: req.params.id, eventName: req.params.name , id:req.session.user.id});
 })
 
-router.post("/AddParticipation",ParticipateController.AddParticipate)
+router.post("/AddParticipation",isAuthenticated,ParticipateController.AddParticipate)
 
 //getParticipation
 
-router.get("/Perticipation",ParticipateController.GetParticipate)
+router.get("/Perticipation",isAuthenticated,ParticipateController.GetParticipate)
 
 // router.get('/Detail/:id', Events.getEventDetails);
+
+router.get('/Admin/participations', ParticipateController.getAllParticipations);
+
+router.post('/validateParticipation/:id', ParticipateController.validateParticipation);
 
 module.exports = router;    

@@ -11,10 +11,12 @@ class ProgrammModel {
             })
         })
     }
-    static async InsertProgramme(prog) {
+    static async InsertProgramme(programme) {
         const sql = 'INSERT INTO programme (event_id, jour, description) VALUES (?, ?, ?)';
+        console.log('SQL Query:', sql); // Debugging statement
+        console.log('Values:', [programme.event_id, programme.jour, programme.description]); // Debugging statement
         return new Promise((resolve, reject) => {
-            db.query(sql, [prog.event_id, prog.jour, prog.description], (err, result) => {
+            db.query(sql, [programme.event_id, programme.jour, programme.description], (err, result) => {
                 if (err) {
                     console.error('Database error:', err);
                     return reject(err);
@@ -24,6 +26,7 @@ class ProgrammModel {
             });
         });
     }
+    
 }
 
 module.exports = ProgrammModel

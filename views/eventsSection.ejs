@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <!-- Uncomment to show the title -->
+  <!-- <title>Owl-carousel Cards Slider | CodingNepal</title> -->
+  <link rel="stylesheet" href="/css/Events.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+</head>
+<body>
+  <div class="slider owl-carousel">
+    <% data.forEach(event => { %>
+      <div class="card">
+        <div class="img">
+          <img src="<%= event.image %>" alt="">
+        </div>
+        <div class="content">
+          <div class="title">
+            <%= event.name %>
+          </div>
+          <p>
+            <%= event.description %>
+          </p>
+          <div class="btn">
+            <button><a href="/FormEvent/<%= event.id %>">Read More</a></button>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  <script>
+    $(document).ready(function(){
+      if ($('.owl-carousel .card').length > 1) {
+        $(".slider").owlCarousel({
+          loop: false,
+          autoplay: true,
+          autoplayTimeout: 2000, // 2000ms = 2s
+          autoplayHoverPause: true,
+        });
+      } else {
+        $(".slider").owlCarousel({
+          loop: false,
+          autoplay: false,
+          items: 1
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+<img src="" alt="">

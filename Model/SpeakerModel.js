@@ -14,14 +14,14 @@ class SpeakerModel {
     static async InsertSpeaker(speaker){
         const sql = 'INSERT INTO speaker (nom, prenom, image, description,event_id ,email,phone) VALUES (?, ?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-          db.query(sql, [speaker.nom, speaker.prenom,`/uploads/`+speaker.image, speaker.description, speaker.event_id,speaker.email,speaker.phone], (err, result) => {
+            db.query(sql, [speaker.nom, speaker.prenom,`/uploads/`+speaker.image, speaker.description, speaker.event_id,speaker.email,speaker.phone], (err, result) => {
             if (err) {
-              console.error('Database error:', err);
-              return reject(err);
+                console.error('Database error:', err);
+                return reject(err);
             }
             console.log(result)
             resolve(result);
-          });
+            });
         });
     }
     static async GetSpeakerBtId(id){

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/css/TableUser.css">
 </head>
 <body>
+  <div class="dashboard">
+    <div class="side-menu">
+        <%- include('../layout/SideDash') %>
+    </div>
+    <div class="content-wrap">
         <button><a href="/InsertSpeaker">INSERT</a></button>
         <table>
             <thead>
@@ -56,5 +61,7 @@
                     <% }); %>
             </tbody>
           </table>
+          </div>
+  </div>
 </body>
 </html>

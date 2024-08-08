@@ -1,3 +1,57 @@
+/* TableUser.css */
+
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for side menu and content */
+.dashboard {
+    display: flex; /* Enables flexbox layout */
+}
+
+/* Style for the side menu */
+.side-menu {
+    width: 250px; /* Adjust width as needed */
+    background-color: #f4f4f4; /* Background color for visibility */
+    padding: 10px; /* Padding inside side menu */
+}
+
+/* Style for the main content */
+.content-wrap {
+    flex: 1; /* Takes up remaining space */
+    padding: 10px; /* Padding inside content area */
+}
+
+/* Style for the table */
+table {
+    width: 100%; /* Full width of the content area */
+    border-collapse: collapse;
+    margin-top: 20px; /* Space above the table */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+
+
+
+
 body {
 	background: #fafafa url(https://jackrugile.com/images/misc/noise-diagonal.png);
 	color: #444;

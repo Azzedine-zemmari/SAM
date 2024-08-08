@@ -12,12 +12,14 @@ class ProgramController{
     }
     static async AddProgramm(req, res) {
         const { event_id, jour, description } = req.body;
+        console.log('Request body:', req.body); // Debugging statement
         try {
             const programme = {
                 event_id,
                 jour,
                 description,
             };
+            console.log('Program object:', programme); // Debugging statement
             await Programme.InsertProgramme(programme);
             res.redirect('/getProgram'); // Ensure you have this route defined
         } catch (error) {

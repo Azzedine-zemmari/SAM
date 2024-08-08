@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/Form.css">
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="/updateEvent/<%= event.id %>" method="post" enctype="multipart/form-data">
+            <div class="user-box">
+                <input type="text" name="name" id="name" value="<%= event.name %>">
+                <label>Nom</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="description" id="name" value="<%= event.description %>">
+                <label>Description</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="adress" id="adress" value="<%= event.adress %>">
+                <label>Adress</label>
+            </div>
+            <div class="user-box">
+                <input type="date" name="EventStart" id="EventStart" value="<%= event.EventStart %>">
+                <label>EventStart</label>
+            </div>
+            <div class="user-box">
+                <input type="date" name="EventEnd" id="EventEnd" value="<%= event.EventEnd %>">
+                <label for="">EventEnd</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="EventPlace" id="EventPlace" value="<%= event.EventPlace %>">
+                <label for="EventPlace">Event Place:</label>
+            </div>
+            <div class="user-box">
+                <input type="file" name="image" id="image">
+                <label for="image">Image:</label>
+            </div>
+            <img src="<%= event.image %>" alt="<%= event.name %>" width="100">
+            <div class="user-box">
+                <button type="submit">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<!-- toISOString():
+This method converts a Date object to a string in ISO 8601 format, which looks like this: 2024-08-03T15:30:00.000Z.
+
+.split('T'):
+The split('T') method splits the ISO string at the T character, which separates the date and time portions of the string. This results in an array like ['2024-08-03', '15:30:00.000Z'].
+
+[0]:
+This selects the first part of the split array, which is the date portion (YYYY-MM-DD). -->

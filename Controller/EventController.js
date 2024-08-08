@@ -10,7 +10,7 @@ class EventController {
                 event.formattedDate = EventController.formatDate(event.EventDate);
                 console.log('Formatted date for event:', event); // Log each event with formatted date
             });
-            res.render("events", { data: result });
+            res.render("eventsSection", { data: result });
         } catch (error) {
             console.error('Error fetching events:', error);
             res.status(500).send('Error fetching events.');
@@ -46,7 +46,7 @@ class EventController {
                 event.formattedDateE = EventController.formatDate(event.EventEnd);
                 console.log('Formatted date for event:', event); // Log each event with formatted date
             });
-            res.render("Admin/TableEvent", { data: result });
+            res.render("Admin/Event", { data: result });
         } catch (error) {
             console.error('Error fetching events:', error);
             res.status(500).send('Error fetching events.');
@@ -88,7 +88,7 @@ class EventController {
             const eventData = event[0];
             eventData.EventStart = eventData.EventStart ? new Date(eventData.EventStart).toISOString().split('T')[0] : null;
             eventData.EventEnd = eventData.EventEnd ? new Date(eventData.EventEnd).toISOString().split('T')[0] : null;
-            res.render("Admin/FormUpdate", { event: eventData });
+            res.render("Admin/FormUpdateEvent", { event: eventData });
         } else {
             res.status(404).send('Event not found');
         }
