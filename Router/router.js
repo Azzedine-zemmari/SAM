@@ -12,10 +12,11 @@ const ProgramController = require("../Controller/ProgrammeController")
 const ActualiterController = require("../Controller/ActualiterController")
 const upload = require("../Middleware/uploadMiddleware")
 const isAuthenticated = require("../Middleware/auth")
+const isAdmin = require("../Middleware/isAdmin")
 
 
 router.get("/",(req,res)=>{
-    res.render("Home")
+    res.render("Home", { session: req.session })
 })
 
 router.get('/login', (req, res) => {
@@ -52,7 +53,19 @@ router.post('/register', async (req, res) => {
             console.error('Database error:', err);
             return res.status(500).send('Database error. Please try again later.');
         }
-        return res.render('Home');
+        req.session.user = {
+            id: result.insertId,  // Assuming `insertId` is the new user's ID
+            email: email,
+            isAdmin: false  // Assuming new users are not admins by default
+        };
+        req.session.save(err => {
+            if (err) {
+                console.error('Session save error:', err);
+                return res.status(500).send('Registration succeeded, but there was an issue with the session. Please try logging in.');
+            }
+
+            return res.redirect('/');
+        });
     });
 });
 
@@ -81,14 +94,23 @@ router.post('/login', (req, res) => {
                 req.session.user = {
                     id: result[0].id,
                     email: result[0].email,
-                    isAdmin: result[0].isAdmin
+                    isAdmin: result[0].isAdmin === 1 // Convert to boolean for easier handling
                 };
                 console.log('User details:', req.session.user); 
-                if (result[0].isAdmin == 1) {
-                    return res.redirect('/Dashboard');
-                } else {
-                    return res.redirect('/');
-                }
+                 // Save the session and redirect based on user role
+                 req.session.save(err => {
+                    if (err) {
+                        console.error('Session save error:', err);
+                        return res.status(500).send('Login succeeded, but there was an issue with the session. Please try logging in again.');
+                    }
+
+                    if (req.session.user.isAdmin) {
+                        return res.redirect('/Dashboard');
+                    } else {
+                        return res.redirect('/');
+                    }
+                });
+
             } else {
                 return res.status(401).send('Invalid email or password.');
             }
@@ -109,86 +131,93 @@ router.get('/logout', (req, res) => {
 
 //Admin
 
-router.get("/InsertEvent",(req,res)=>{
+router.get("/InsertEvent",isAdmin,(req,res)=>{
     res.render("Admin/InsertEvent")
 })
 
-router.get("/Speaker",SpeakerController.getAllSpeaker)
+//Get the all the speaker inside a table in the admin part
+router.get("/Speaker",isAdmin,SpeakerController.getAllSpeaker)
 
 //open insert speaker form 
-router.get("/InsertSpeaker",(req,res)=>{
+router.get("/InsertSpeaker",isAdmin,(req,res)=>{
     res.render("Admin/InsertSpeaker")
 })
 //add speaker
-router.post("/AddSpeaker",upload.single("image"),SpeakerController.AddSpeakers)
-//update form 
-router.get("/update/:id",upload.single("image"),SpeakerController.ShowSpeakerById)
+router.post("/AddSpeaker",isAdmin,upload.single("image"),SpeakerController.AddSpeakers)
+//get the update form for speaker 
+router.get("/update/:id",isAdmin,upload.single("image"),SpeakerController.ShowSpeakerById)
 //update speaker
-router.post("/updateEventspeaker/:id",upload.single("image"),SpeakerController.UpdateSpeaker)
+router.post("/updateEventspeaker/:id",isAdmin,upload.single("image"),SpeakerController.UpdateSpeaker)
 
 //delete speaker
 
-router.delete("/DeleteSpeaker/:id",SpeakerController.DeleteSpeaker)
+router.delete("/DeleteSpeaker/:id",isAdmin,SpeakerController.DeleteSpeaker)
 
-//sponsors
+//get all the sponsor inside the admin part
 
-router.get("/GetSponsors",SponsorController.getAllSponsor)
+router.get("/GetSponsors",isAdmin,SponsorController.getAllSponsor)
 
-router.get("/InsertSponsr",(req,res)=>{
+//get a form to insert new sponsor
+router.get("/InsertSponsr",isAdmin,(req,res)=>{
     res.render("Admin/InsertSponsors")
 })
-router.post("/AddSponsor",upload.single("logo"),SponsorController.AddSponsor)
+//Add new sponsor
+router.post("/AddSponsor",isAdmin,upload.single("logo"),SponsorController.AddSponsor)
+//delete sponsor
+router.delete("/delete/:id",isAdmin,SponsorController.DeleteSponsor)
 
-router.delete("/delete/:id",SponsorController.DeleteSponsor)
+//get all the programm in the admin Part
+router.get("/getProgram",isAdmin,ProgramController.getAllProgrammes)
 
-//get programm
-router.get("/getProgram",ProgramController.getAllProgrammes)
-router.get("/InsertProgram",(req,res)=>{
+//get the formulaire to insert new Programme
+router.get("/InsertProgram",isAdmin,(req,res)=>{
     res.render("Admin/InsertProgramme")
 })
 //still has error
-router.post("/AddProgramm", ProgramController.AddProgramm);
-//get all event
+router.post("/AddProgramm",isAdmin, ProgramController.AddProgramm);
+//get all event part user
 router.get("/GetEvent", Events.getAllEvent)
 
 // router.get('/Detail/:id', Events.getEventById);
+//get the Dashboard 
+router.get('/Dashboard',isAdmin, CountController.showDashboard);
 
-router.get('/Dashboard', CountController.showDashboard);
-
-router.get("/Admin/users",UserController.showUsers)
-
-router.get("/Admin/Events",Events.GetEvents)
-
-router.get("/FormAdd",(req,res)=>{
+//get all the user in the admin part
+router.get("/Admin/users",isAdmin,UserController.showUsers)
+//get all the events in the admin part
+router.get("/Admin/Events",isAdmin,Events.GetEvents)
+//get form to insert Events
+router.get("/FormAdd",isAdmin,(req,res)=>{
     res.render("Admin/InsertEvent")
 })
-router.post("/Add",upload.single("image"),Events.AddEvents)
+//insert event
+router.post("/Add",isAdmin,upload.single("image"),Events.AddEvents)
 //show the update form
-router.get("/FormUpdate/:id",Events.ShowEvent)
+router.get("/FormUpdate/:id",isAdmin,Events.ShowEvent)
 //update the event
-router.post("/updateEvent/:id", upload.single('image'), Events.Update)
-
-router.delete("/FormDelete/:id",Events.Delete)
+router.post("/updateEvent/:id",isAdmin, upload.single('image'), Events.Update)
+//delete event
+router.delete("/FormDelete/:id",isAdmin,Events.Delete)
 
 //details 
-router.get("/FormEvent/:eventId", isAuthenticated,DetailController.getAllDetails);
+router.get("/FormEvent/:eventId",DetailController.getAllDetails);
 
 //form participate
-
+//get the participation form
 router.get("/Participate/:id/:name",isAuthenticated,(req,res)=>{
     res.render("ParticipateForm",{ eventId: req.params.id, eventName: req.params.name , id:req.session.user.id});
 })
-
+//insert a participation
 router.post("/AddParticipation",isAuthenticated,ParticipateController.AddParticipate)
 
-//getParticipation
+//go to the page reservation to check he's perticipations
 
 router.get("/Perticipation",isAuthenticated,ParticipateController.GetParticipate)
 
-// router.get('/Detail/:id', Events.getEventDetails);
+//admin get all the participation
 
-router.get('/Admin/participations', ParticipateController.getAllParticipations);
-
-router.post('/validateParticipation/:id', ParticipateController.validateParticipation);
+router.get('/Admin/participations',isAdmin,ParticipateController.getAllParticipations);
+//validate a participation
+router.post('/validateParticipation/:id',isAdmin, ParticipateController.validateParticipation);
 
 module.exports = router;    

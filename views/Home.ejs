@@ -50,8 +50,11 @@
                 <li><a href="/Actualiter">Actualites</a></li>
                 <li><a href="/Perticipation">Reservation</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="./propos.html">A propos</a></li> <li>
-                    <a href="/logout" style="color: #DD6E42;">Déconnexion</a>
+                <li><a href="./propos.html">A propos</a></li> <% if (session.user) { %>
+                    <li><a href="/logout" style="color: #DD6E42;">Déconnexion</a></li>
+                <% } else { %>
+                    <li><a href="/login">Connexion</a></li>
+                <% } %>
                 </li>
             </ul>
         </nav>
@@ -75,7 +78,7 @@
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="./index.html">
-                               <p style="color: #DD6E42; font-size: 20px;">SAM</p>
+                                <p style="color: #DD6E42; font-size: 20px;">SAM</p>
                             </a>
                         </div>
                     </div>
@@ -89,12 +92,14 @@
                                     <li><a href="/Perticipation">Reservation</a></li>
                                     <li><a href="#contact">Contact</a></li>
                                     <li><a href="/aprops">A propos</a>
-                                    <li>
-                                        <a href="/logout" style="color: #DD6E42;">Déconnexion</a>
-                                    </li>
+                                        <% if (session.user) { %>
+                                            <li><a href="/logout" style="color: #DD6E42;">Déconnexion</a></li>
+                                        <% } else { %>
+                                            <li><a href="/login">Connexion</a></li>
+                                        <% } %>
                                 </ul>
                             </nav>
-                         
+                        
                         </div>
                     </div>
                 </div>
@@ -122,9 +127,9 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="img/hero/1.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/3.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/agriculteurs.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="/img/hero/1.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="/img/hero/3.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="/img/hero/agriculteurs.jpg"></div>
         </div>
     </section>
     <!-- Hero Section End -->
