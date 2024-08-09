@@ -27,21 +27,6 @@ class EventController {
     }
     
 
-    // static async getEventById(req, res) {
-    //     try {
-    //         const eventId = req.params.id;
-    //         const event = await Event.getEventById(eventId);
-    //         if (event) {
-    //             event.formattedDate = EventController.formatDate(event.EventDate);
-    //             res.render("Detail", { event });
-    //         } else {
-    //             res.status(404).send('Event not found');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error fetching event:', error);
-    //         res.status(500).send('Error fetching event.');
-    //     }
-    // }
 
     static formatDate(dateString) {
         return moment(dateString).format('DD/MM/YYYY');

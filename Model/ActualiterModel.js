@@ -11,6 +11,7 @@ class ActualiterModel{
             })
         })
     }
+    //(Error)
     // static async Insert(Act) {
     //     const sql = 'INSERT INTO actualiter (title, description) VALUES (?, ?)';
     //     return new Promise((resolve, reject) => {

@@ -1,6 +1,7 @@
 const Speaker = require("../Model/SpeakerModel")
 
 class SpeakerController{
+    //admin part 
     static async getAllSpeaker(req,res){
         try{
             const result = await Speaker.getSpeaker();

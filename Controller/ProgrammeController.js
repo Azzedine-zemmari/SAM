@@ -10,6 +10,7 @@ class ProgramController{
             res.status(500).send("Error fetching speaker")
         }
     }
+    //Error
     static async AddProgramm(req, res) {
         const { event_id, jour, description } = req.body;
         console.log('Request body:', req.body); // Debugging statement

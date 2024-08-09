@@ -40,7 +40,7 @@ class ParticipateController {
             res.status(500).send('Error creating event');
           }
     }
-
+    //get all the participation (admin part)
     static async getAllParticipations(req, res) {
       try {
           const participations = await participate.getAllParticipations();
@@ -50,7 +50,7 @@ class ParticipateController {
       }
   }
 
-    // Validate a participation
+    // Validate a participation (admin part)
     static async validateParticipation(req, res) {
       const { id } = req.params;
 

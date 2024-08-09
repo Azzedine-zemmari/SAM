@@ -94,7 +94,7 @@ router.post('/login', (req, res) => {
                 req.session.user = {
                     id: result[0].id,
                     email: result[0].email,
-                    isAdmin: result[0].isAdmin === 1 // Convert to boolean for easier handling
+                    isAdmin: result[0].isAdmin 
                 };
                 console.log('User details:', req.session.user); 
                  // Save the session and redirect based on user role
@@ -178,7 +178,7 @@ router.post("/AddProgramm",isAdmin, ProgramController.AddProgramm);
 //get all event part user
 router.get("/GetEvent", Events.getAllEvent)
 
-// router.get('/Detail/:id', Events.getEventById);
+
 //get the Dashboard 
 router.get('/Dashboard',isAdmin, CountController.showDashboard);
 

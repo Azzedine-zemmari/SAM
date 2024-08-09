@@ -18,7 +18,7 @@ class DetailController{
             });
 
             console.log("Event Details:", eventDetails); // Debugging
-            res.render('Participation', {eventDetails });
+            res.render('EventDetails', {eventDetails });
         } catch (error) {
             console.error('Error fetching events:', error);
             res.status(500).send('Error fetching events.');

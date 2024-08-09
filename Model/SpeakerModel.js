@@ -24,6 +24,7 @@ class SpeakerModel {
             });
         });
     }
+    //show the update form with the old data
     static async GetSpeakerBtId(id){
         return new Promise((resolve, reject) => {
             const sql = 'select * from speaker where id = ?'

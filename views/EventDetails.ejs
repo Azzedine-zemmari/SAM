@@ -14,9 +14,9 @@
                 <% if (eventDetails && eventDetails.event) { %>
                     <h3><%= eventDetails.event.name %></h3>
                 <% } else { %>
-                    <h3>Event name not available</h3>
+                    <h3>Nom de l'événement non disponible</h3>
                 <% } %>
-                <button><a href="/Participate/<%= eventDetails.event.id %>/<%= eventDetails.event.name %>">Register Event Now</a></button>
+                <button><a href="/Participate/<%= eventDetails.event.id %>/<%= eventDetails.event.name %>">Inscrivez-vous</a></button>
             </div>
         </div>
         <div class="infos-container">
@@ -25,38 +25,38 @@
                     <% if (eventDetails && eventDetails.event && eventDetails.event.image) { %>
                         <img src="<%= eventDetails.event.image %>" alt="">
                     <% } %>
-                    <p><%= eventDetails && eventDetails.event ? eventDetails.event.description : 'No description available' %></p>
+                    <p><%= eventDetails && eventDetails.event ? eventDetails.event.description : 'Aucune description disponible' %></p>
                 </div>
                 <div class="swiper-two">
                     <div class="event-details">
                         <div class="header">
-                            <div class="one"><h3>Event Details</h3></div>
+                            <div class="one"><h3>Détails de l'événement</h3></div>
                             <div class="two"><i class="fa-regular fa-file-lines"></i></div>
                         </div>
                         <div class="body">
                             <div class="item">
-                                <h3>Start Date:</h3>
-                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventStart : 'No start date available' %></p>
+                                <h3>Date de début:</h3>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventStart : 'Aucune date de début disponible' %></p>
                             </div>
                             <div class="item">
-                                <h3>End Date:</h3>
-                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventEnd : 'No end date available' %></p>
+                                <h3>Date de fin:</h3>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventEnd : 'Aucune date de fin disponible' %></p>
                             </div>
                             <div class="item">
                                 <h3>Address:</h3>
-                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventPlace : 'No address available' %></p>
+                                <p><%= eventDetails && eventDetails.event ? eventDetails.event.EventPlace : 'Aucune adresse disponible' %></p>
                             </div>
                         </div>
                         <div class="speakers">
                             <div class="header">
-                                <div class="one"><h3>Speakers</h3></div>
+                                <div class="one"><h3>Intervenants</h3></div>
                                 <div class="two"><i class="fa-solid fa-user-tie"></i></div>
                             </div>
                             <div class="body">
                                 <% if (eventDetails && eventDetails.speakers && eventDetails.speakers.length > 0) { %>
                                     <% eventDetails.speakers.forEach(speaker => { %>
                                         <div class="item">
-                                            <h3>Name:</h3>
+                                            <h3>Nom:</h3>
                                             <p><%= speaker.nom %> <%= speaker.prenom %></p>
                                         </div>
                                         <div class="item">
@@ -64,7 +64,7 @@
                                             <p><%= speaker.email %></p>
                                         </div>
                                         <div class="item">
-                                            <h3>Phone:</h3>
+                                            <h3>Téléphone:</h3>
                                             <p><%= speaker.phone %></p>
                                         </div>
                                         <div class="item">
@@ -74,13 +74,13 @@
                                         <p class="sparetor">--------------------------</p>
                                     <% }) %>
                                 <% } else { %>
-                                    <p class="notFound">No speakers available</p>
+                                    <p class="notFound">Aucun intervenant disponible</p>
                                 <% } %>
                             </div>
                         </div>
                         <div class="sponsors">
                             <div class="header">
-                                <div class="one"><h3>Sponsors</h3></div>
+                                <div class="one"><h3>Commanditaires</h3></div>
                                 <div class="two"><i class="fa-solid fa-user-group"></i></div>
                             </div>
                             <div class="body">
@@ -92,7 +92,7 @@
                                         </div>
                                     <% }) %>
                                 <% } else { %>
-                                    <p class="notFound">No sponsors available</p>
+                                    <p class="notFound">Aucun Commanditaires disponible</p>
                                 <% } %>
                             </div>
                         </div>
