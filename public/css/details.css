@@ -7,12 +7,17 @@
 :root{
     --text-color: #242b46;
 }
+button > a{
+    text-decoration: none;
+    color: white;
+}
 .slide {
-    background: url('../images/bg_heading-compressor.jpg') no-repeat center center/cover;
+    background: url('../img/hero/bg_heading-compressor.jpg') ;
     height: 400px;
     width: 100%;
     position: relative;
     overflow: hidden;
+    object-fit: cover;
 }
 .slide .slider-hover {
     position: absolute;
@@ -77,8 +82,11 @@
     flex-direction: column;
 }
 .details .infos-container .section-1 .swiper img{
-    width: fit-content;
-    max-width: 100%;
+    /* width: fit-content; */
+    max-width: 350px;
+    width: 300px;
+    object-fit: cover;
+    height: 280px;
 }
 .details .infos-container .section-1 .swiper p {
     margin: 40px 0 20px 0;
@@ -178,4 +186,84 @@
 }
 .details .infos-container .section-1 .speakers.two .body .item img {
     max-width: 150px;
+}
+.sparetor{
+    color: #f53f7b;
+    text-align: center;
+}
+.notFound{
+    text-align: center;
+}
+.sponsor-img{
+    width: 130px;
+    height: 80px;
+    max-width: 130px;
+    max-height:80px ;
+    border: 3px solid #f53f7b;
+}
+.program{
+    display: flex;
+    flex-direction: column;
+}
+.program-head{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    background: #d2cfcf;
+    padding: 20px;
+}
+.program-head-item.active{
+    padding: 20px;
+    background-color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.program-head-item{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid var(--text-color);
+}
+.program-head-item > p:first-child{
+    font-size: 19px;
+    font-weight: 700;
+}
+.program-head-item > p:nth-child(2){
+    margin-top: 5px;
+    color: grey;
+}
+.program-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    border: 2px solid grey;
+}
+.program-body > p{
+    text-align: center;
+}
+
+.program-head-item.active::before{
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%; /* Centers the triangle horizontally */
+    transform: translateX(-50%); /* Offsets the triangle to be centered */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Creates the left side of the triangle */
+    border-right: 10px solid transparent; /* Creates the right side of the triangle */
+    border-top: 10px solid var(--text-color); /* Creates the bottom side (colored) of the triangle */
+    background-color: transparent; /* No background color needed */
 }

@@ -71,9 +71,10 @@
                                             <h3>Description:</h3>
                                             <p><%= speaker.description %></p>
                                         </div>
+                                        <p class="sparetor">--------------------------</p>
                                     <% }) %>
                                 <% } else { %>
-                                    <p>No speakers available</p>
+                                    <p class="notFound">No speakers available</p>
                                 <% } %>
                             </div>
                         </div>
@@ -86,12 +87,12 @@
                                 <% if (eventDetails && eventDetails.sponsors && eventDetails.sponsors.length > 0) { %>
                                     <% eventDetails.sponsors.forEach(sponsor => { %>
                                         <div class="item">
-                                            <img src="<%= sponsor.logo %>" alt="<%= sponsor.nom %>">
+                                            <img class="sponsor-img" src="<%= sponsor.logo %>" alt="<%= sponsor.nom %>">
                                             <p><%= sponsor.nom %></p>
                                         </div>
                                     <% }) %>
                                 <% } else { %>
-                                    <p>No sponsors available</p>
+                                    <p class="notFound">No sponsors available</p>
                                 <% } %>
                             </div>
                         </div>
@@ -99,15 +100,23 @@
                 </div>
             </div>
         </div>
-        <div>
-            <h2>Program</h2>
+        <div class="program">
+            <!-- <h2>Program</h2> -->
+             <div class="program-head">
+            <% eventDetails.program.forEach((day,index) => { %>
+            <div class="program-head-item">
+                <p>DAY <%= index+1 %></p>
+                <p><%= day.jour %></p>
+            </div>
+            <% }); %>
+        </div>
             <% eventDetails.program.forEach(day => { %>
-                <div>
-                    <h3><%= day.jour %></h3>
+                <div class="program-body" style="display: none;">
                     <p><%= day.description %></p>
                 </div>
             <% }); %>
         </div>
     </div>
+    <script src="/js/details.js"></script>
 </body>
 </html>
