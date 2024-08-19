@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,8 +21,23 @@
             box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.7);
             mix-blend-mode: destination-out;
         }
+
+        /* Triangle with gradient */
+        .triangle {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 0 0 150px 200px;
+            border-color: transparent transparent #ff9852 transparent;
+            transform: rotate(0deg);
+            z-index: 50;
+        }
     </style>
 </head>
+
 <body class="overflow-hidden h-screen flex flex-col">
     <!-- Hero section -->
     <section class="relative w-full h-full flex justify-center items-center">
@@ -32,28 +48,57 @@
         </video>
 
         <!-- White overlay with opacity -->
-        <div class="absolute inset-0 bg-white bg-opacity-5"></div>
+        <div class="absolute inset-0 bg-white bg-opacity-[0.01]"></div>
 
         <!-- Cursor effect -->
         <div class="cursor"></div>
 
+
         <!-- Navbar section -->
-        <header class="absolute top-0 left-0 w-full z-30">
-            <nav class="bg-white w-[80%] mx-auto mt-10 p-4 rounded flex justify-between items-center">
-                <div class="flex">
-                    <img class="w-40 h-16" src="/img/logo.svg" alt="Sam logo">
+        <header class="absolute top-0 left-0 w-full z-50">
+            <nav class="bg-white w-[80%] mx-auto mt-10 p-4 rounded">
+                <div class="flex justify-between items-center">
+                    <div class="flex">
+                        <img class="w-40 h-16 mt-2 ml-0" src="/img/logo.svg" alt="Sam logo">
+                    </div>
+                    <ul class="flex">
+                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/GetEvent">Evenements</a></li>
+                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/Actualiter">Actualites</a></li>
+                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/Perticipation">Reservation</a>
+                        </li>
+                        <li class="p-3"><a class="font-lexend hidden lg:block" href="#contact">Contact</a></li>
+                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/aprops">A propos</a></li>
+                        <% if (session.user) { %>
+                            <li class="p-3"><a class="font-lexend hidden lg:block" href="/logout"
+                                    style="color: #DD6E42;">Déconnexion</a></li>
+                            <% } else { %>
+                                <li class="p-3"><a class="font-lexend hidden lg:block" href="/login">Connexion</a></li>
+                                <% } %>
+                                    <li class="flex justify-center items-center">
+                                        <svg id="burger" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            class="  w-8 h-8 lg:hidden">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                        </svg>
+                                    </li>
+                                    <li>
+                                        <svg class=" close hidden" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32"
+                                            viewBox="0 0 48 48" style="fill:#FD7E14;">
+                                            <path
+                                                d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z">
+                                            </path>
+                                        </svg>
+                                    </li>
+                    </ul>
                 </div>
-                <ul class="flex">
-                    <li class="p-6"><a class="font-lexend" href="/GetEvent">Evenements</a></li>
-                    <li class="p-6"><a class="font-lexend" href="/Actualiter">Actualites</a></li>
-                    <li class="p-6"><a class="font-lexend" href="/Perticipation">Reservation</a></li>
-                    <li class="p-6"><a class="font-lexend" href="#contact">Contact</a></li>
-                    <li class="p-6"><a class="font-lexend" href="/aprops">A propos</a></li>
-                    <% if (session.user) { %>
-                        <li class="p-6"><a class="font-lexend" href="/logout" style="color: #DD6E42;">Déconnexion</a></li>
-                    <% } else { %>
-                        <li class="p-6"><a class="font-lexend" href="/login">Connexion</a></li>
-                    <% } %>
+                <ul class="hidden phone-nav">
+                    <li><a class="font-lexend pl-5" href="/">Accueil</a></li>
+                    <li><a class="font-lexend pl-5" href="/GetEvent">Evenements</a></li>
+                    <li><a class="font-lexend pl-5" href="/Actualiter">Actualites</a></li>
+                    <li><a class="font-lexend pl-5" href="/Perticipation">Reservation</a></li>
+                    <li><a class="font-lexend pl-5" href="#contact">Contact</a></li>
+                    <li><a class="font-lexend pl-5" href="/aprops">A propos</a>
                 </ul>
             </nav>
         </header>
@@ -61,36 +106,45 @@
         <!-- Hero content -->
         <div class="relative z-30 text-center p-8 rounded-lg">
             <h1 class="text-6xl font-bold font-Exo text-gray-800">Empowering Agriculture Events</h1>
-            <p class="mt-7 text-lg font-lexend text-gray-600">
-                SAM is revolutionizing agriculture event management,<br/>
+            <p class="mt-7 text-xl font-Cursive">
+                SAM is revolutionizing agriculture event management,<br />
                 making it easier to stay updated on the latest advancements.
             </p>
         </div>
         <!-- orange circle -->
+        <div class="h-52 w-52 bg-orange-gradient rounded-full z-50 absolute -bottom-2 right-1">
+        </div>
+        <!-- orange triangle -->
+        <div class="triangle"></div>
+        <!-- blue leaf -->
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/js/cursor.js">
+    </script>
     <script>
-        var cursor = document.querySelector(".cursor"),
-            mouseX = 0,
-            mouseY = 0;
-
-        gsap.to({}, 0.016, {
-            repeat: -1,
-            onRepeat: function() {
-                gsap.set(cursor, {
-                    css: {
-                        left: mouseX,
-                        top: mouseY
-                    }
-                });
+        const burger = document.querySelector("#burger");
+        const phone = document.querySelector(".phone-nav");
+        const close = document.querySelector(".close");
+        burger.addEventListener('click', function () {
+            if (phone.classList.contains("hidden")) {
+                phone.classList.remove("hidden");
+                phone.classList.add("block");
+                close.classList.remove("hidden");
+                close.classList.add("block");
+                burger.classList.add("hidden")
             }
-        });
-
-        window.addEventListener("mousemove", function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        })
+        close.addEventListener('click', function(){
+            if(close.classList.contains("block")){
+                close.classList.remove("block");
+                close.classList.add("hidden")
+                phone.classList.remove("block")
+                phone.classList.add("hidden")
+                burger.classList.remove("hidden")
+            }
+        })
     </script>
 </body>
+
 </html>
