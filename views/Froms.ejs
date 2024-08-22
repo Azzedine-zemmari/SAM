@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</head>
+
+<body>
+    <form action="/Add" method="post" enctype="multipart/form-data" >
+        <div class="space-y-12 w-[80%] mx-auto">
+            <div class="border-b border-gray-900/10 pb-12">
+                <h2 class="text-base font-semibold leading-7 text-gray-900">Event</h2>
+                <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be
+                    careful what you share.</p>
+
+                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div class="sm:col-span-4">
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Event
+                            name</label>
+                        <div class="mt-2">
+                            <div
+                                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <input type="text" name="name" id="username" autocomplete="username"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="janesmith">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                        <div class="mt-2">
+                            <textarea id="about" name="description" rows="3"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 md:w-auto"></textarea>
+                        </div>
+                        <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="country" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                        <div class="mt-2">
+                            <select id="city" name="adress" autocomplete="city-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option value="Casablanca">Casablanca</option>
+                                <option value="Fez">Fez</option>
+                                <option value="Tangier">Tangier</option>
+                                <option value="Marrakesh">Marrakesh</option>
+                                <option value="Salé">Salé</option>
+                                <option value="Meknes">Meknes</option>
+                                <option value="Rabat">Rabat</option>
+                                <option value="Oujda">Oujda</option>
+                                <option value="Kenitra">Kenitra</option>
+                                <option value="Agadir">Agadir</option>
+                                <option value="Tetouan">Tetouan</option>
+                                <option value="Temara">Temara</option>
+                                <option value="Safi">Safi</option>
+                                <option value="Mohammedia">Mohammedia</option>
+                                <option value="Khouribga">Khouribga</option>
+                                <option value="El Jadida">El Jadida</option>
+                                <option value="Beni Mellal">Beni Mellal</option>
+                                <option value="Aït Melloul">Aït Melloul</option>
+                                <option value="Nador">Nador</option>
+                                <option value="Dar Bouazza">Dar Bouazza</option>
+                                <option value="Taza">Taza</option>
+                                <option value="Settat">Settat</option>
+                                <option value="Berrechid">Berrechid</option>
+                                <option value="Khemisset">Khemisset</option>
+                                <option value="Inezgane">Inezgane</option>
+                                <option value="Ksar El Kebir">Ksar El Kebir</option>
+                                <option value="Larache">Larache</option>
+                                <option value="Guelmim">Guelmim</option>
+                                <option value="Khenifra">Khenifra</option>
+                                <option value="Berkane">Berkane</option>
+                                <option value="Taourirt">Taourirt</option>
+                                <option value="Bouskoura">Bouskoura</option>
+                                <option value="Fquih Ben Salah">Fquih Ben Salah</option>
+                                <option value="Dcheira El Jihadia">Dcheira El Jihadia</option>
+                                <option value="Oued Zem">Oued Zem</option>
+                                <option value="El Kelaa Des Sraghna">El Kelaa Des Sraghna</option>
+                                <option value="Sidi Slimane">Sidi Slimane</option>
+                                <option value="Errachidia">Errachidia</option>
+                                <option value="Guercif">Guercif</option>
+                                <option value="Oulad Teima">Oulad Teima</option>
+                                <option value="Ben Guerir">Ben Guerir</option>
+                                <option value="Tifelt">Tifelt</option>
+                                <option value="Lqliaa">Lqliaa</option>
+                                <option value="Taroudant">Taroudant</option>
+                                <option value="Sefrou">Sefrou</option>
+                                <option value="Essaouira">Essaouira</option>
+                                <option value="Fnideq">Fnideq</option>
+                                <option value="Sidi Kacem">Sidi Kacem</option>
+                                <option value="Tiznit">Tiznit</option>
+                                <option value="Tan-Tan">Tan-Tan</option>
+                                <option value="Ouarzazate">Ouarzazate</option>
+                                <option value="Souk El Arbaa">Souk El Arbaa</option>
+                                <option value="Youssoufia">Youssoufia</option>
+                                <option value="Lahraouyine">Lahraouyine</option>
+                                <option value="Martil">Martil</option>
+                                <option value="Ain Harrouda">Ain Harrouda</option>
+                                <option value="Suq as-Sabt Awlad an-Nama">Suq as-Sabt Awlad an-Nama</option>
+                                <option value="Skhirat">Skhirat</option>
+                                <option value="Ouazzane">Ouazzane</option>
+                                <option value="Benslimane">Benslimane</option>
+                                <option value="Al Hoceima">Al Hoceima</option>
+                                <option value="Beni Ansar">Beni Ansar</option>
+                                <option value="M'diq">M'diq</option>
+                                <option value="Sidi Bennour">Sidi Bennour</option>
+                                <option value="Midelt">Midelt</option>
+                                <option value="Azrou">Azrou</option>
+                                <option value="Drargua">Drargua</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street
+                            address</label>
+                        <div class="mt-2">
+                            <input type="text" name="EventPlace" id="street-address" autocomplete="street-address"
+                                class="block w-auto rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+
+                    <div id="date-range-picker" date-rangepicker class="flex items-center">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+                            <input id="datepicker-range-start" name="EventStart" type="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date start">
+                        </div>
+                        <span class="mx-4 text-gray-500">to</span>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+                            <input id="datepicker-range-end" name="EventEnd" type="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date end">
+                        </div>
+                    </div>
+
+
+                    <div class="col-span-full">
+                        <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover
+                            photo</label>
+                        <div
+                            class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                    <label for="file-upload"
+                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="image" type="file" class="sr-only">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
+
+        </div>
+    </form>
+</body>
+
+</html>

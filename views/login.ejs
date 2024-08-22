@@ -3,13 +3,24 @@
   <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/css/style1.css"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+      .error-message {
+        color: red;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }    
+    </style>
   </head>
   <body>
     <div class="main">
       <div class="container a-container" id="a-container">
         <form class="form" id="a-form"  action="/register" method="post">
           <h2 class="form_title title">S'inscrire</h2>
+          <% if (typeof error !== 'undefined') { %>
+            <div class="error-message"><%= error %></div>
+          <% } %>
           <input class="form__input" name="nom" type="text" placeholder="Name">
           <input class="form__input" name="tel" type="text" placeholder="tel">
           <input class="form__input" name="email" type="text" placeholder="Email">
@@ -20,6 +31,9 @@
       <div class="container b-container" id="b-container">
         <form class="form" id="b-form" method="post" action="/login">
           <h2 class="form_title title">Se connecter</h2>
+          <% if (typeof error !== 'undefined') { %>
+            <div class="error-message"><%= error %></div>
+          <% } %>
           <input class="form__input" name="email" type="text" placeholder="Email">
           <input class="form__input" name="password" type="password" placeholder="Password"><a class="form__link">Mot de passe oublié ?</a>
           <button class="form__button button submit">submit</button>

@@ -6,7 +6,7 @@ function isAdmin(req, res, next) {
         return next();
     } else {
         // If the user is not an admin, redirect to a "not authorized" page or home page
-        return res.status(403).send('Accès refusé. Vous devez être administrateur pour voir cette page.');
+        return res.render("404",{error:'Accès refusé. Vous devez être administrateur pour voir cette page.'});
     }
 }
 

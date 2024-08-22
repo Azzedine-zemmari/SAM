@@ -7,40 +7,122 @@
     <title>Sam</title>
     <link rel="stylesheet" href="/css/tailwind.css">
     <style>
-        /* Cursor styles */
-        .cursor {
-            position: fixed;
-            width: 200px;
-            height: 200px;
-            margin-left: -50px;
-            margin-top: -50px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 20;
-            background-color: transparent;
-            box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.7);
-            mix-blend-mode: destination-out;
-        }
-
-        /* Triangle with gradient */
         .triangle {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0px;
-            height: 0px;
+            width: 0;
+            height: 0;
             border-style: solid;
-            border-width: 0 0 150px 200px;
-            border-color: transparent transparent #ff9852 transparent;
-            transform: rotate(0deg);
-            z-index: 50;
+            border-width: 0 0 200px 200px;
+            border-color: transparent transparent transparent transparent;
+            position: relative;
         }
+        
+        .triangle::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(37deg, rgba(255,152,82,1) 38%, rgba(255,0,116,1) 100%);
+            clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
+        }
+        
+          #s1,#s2,#s3,#s4,#s5{
+            display: none;
+          }
+          #slider {
+            height: 350px;
+            width: 1300px;
+            position: relative;
+            perspective: 700px;
+            transform-style: preserve-3d;
+            
+          }
+          
+          #slider label {
+            margin: auto;
+            width: 30%;
+            height: 100%;
+            border-radius: 4px;
+            position: absolute;
+            left: 0; right: 0;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+          }
+          
+          #s1:checked ~ #slide4, #s2:checked ~ #slide5,
+          #s3:checked ~ #slide1, #s4:checked ~ #slide2,
+          #s5:checked ~ #slide3 {
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
+            transform: translate3d(-30%,0,-200px);
+          }
+          
+          #s1:checked ~ #slide5, #s2:checked ~ #slide1,
+          #s3:checked ~ #slide2, #s4:checked ~ #slide3,
+          #s5:checked ~ #slide4 {
+            box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+            transform: translate3d(-15%,0,-100px);
+          }
+          
+          #s1:checked ~ #slide1, #s2:checked ~ #slide2,
+          #s3:checked ~ #slide3, #s4:checked ~ #slide4,
+          #s5:checked ~ #slide5 {
+            box-shadow: 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+            transform: translate3d(0,0,0);
+          }
+          
+          #s1:checked ~ #slide2, #s2:checked ~ #slide3,
+          #s3:checked ~ #slide4, #s4:checked ~ #slide5,
+          #s5:checked ~ #slide1 {
+            box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+            transform: translate3d(15%,0,-100px);
+          }
+          
+          #s1:checked ~ #slide3, #s2:checked ~ #slide4,
+          #s3:checked ~ #slide5, #s4:checked ~ #slide1,
+          #s5:checked ~ #slide2 {
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
+            transform: translate3d(30%,0,-200px);
+          }
+          
+          #slide1 { background: #00BCD4 }
+          #slide2 { background: #4CAF50 }
+          #slide3 { background: #CDDC39 }
+          #slide4 { background: #FFC107 }
+          #slide5 { background: #FF5722 }
+        /* Media Query for smaller screens */
+@media (min-width: 375px) and (max-width:1023px) {
+    #slider {
+        width:80%;
+        margin: auto;
+    }
+
+    #slider label {
+        width: 80%;
+    }
+}
+@media (min-width:1024px){
+    #slider{
+        width:1500px;
+        margin: 10px auto;
+        
+    }
+    
+}
+.carousel-container {
+    width: 300%; /* Adjust according to the number of slides */
+  }
+  
+  .carousel-slide {
+    min-width: 100vw;
+  }
+        
     </style>
 </head>
 
-<body class="overflow-hidden h-screen flex flex-col">
+<body class="">
     <!-- Hero section -->
-    <section class="relative w-full h-full flex justify-center items-center">
+    <section class="relative w-full h-screen flex justify-center items-center overflow-hidden">
         <!-- Video background -->
         <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop id="myVideo">
             <source src="/video/ocpvedeo.mp4" type="video/mp4">
@@ -48,7 +130,7 @@
         </video>
 
         <!-- White overlay with opacity -->
-        <div class="absolute inset-0 bg-white bg-opacity-[0.01]"></div>
+        <div class="absolute inset-0 bg-white bg-opacity-[0.01]  pointer-events-none"></div>
 
         <!-- Cursor effect -->
         <div class="cursor"></div>
@@ -83,8 +165,8 @@
                                         </svg>
                                     </li>
                                     <li>
-                                        <svg class=" close hidden" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32"
-                                            viewBox="0 0 48 48" style="fill:#FD7E14;">
+                                        <svg class=" close hidden" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                            width="32" height="32" viewBox="0 0 48 48" style="fill:#FD7E14;">
                                             <path
                                                 d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z">
                                             </path>
@@ -111,39 +193,126 @@
                 making it easier to stay updated on the latest advancements.
             </p>
         </div>
-        <!-- orange circle -->
-        <div class="h-52 w-52 bg-orange-gradient rounded-full z-50 absolute -bottom-2 right-1">
+        <!-- orang circle and triangle svg -->
+        <svg fill="none" class="z-50 w-64 h-52 absolute bottom-0 -left-6" viewBox="0 0 327 327"
+            xmlns="http://www.w3.org/2000/svg" data-type="HeroBoxCircle" class="mess-svg box">
+            <path d="M327 327L0 0V327H327Z" fill="url(#c)"></path>
+            <path
+                d="m282.68 162.9c0 32.734-13.342 62.381-34.908 83.836l-168.55-167.7c21.565-21.455 51.353-34.717 84.268-34.717 65.829 0 119.19 53.096 119.19 118.58z"
+                fill="url(#b)"></path>
+            <path
+                d="m247.78 246.74c-21.565 21.466-51.365 34.74-84.291 34.74-64.982 0-117.81-51.717-119.18-116.02v-5.104c0.6757-31.744 13.88-60.411 34.907-81.307l168.56 167.7z"
+                fill="url(#a)"></path>
+            <defs>
+                <linearGradient id="c" x1="-13.568" x2="327.45" y1="2.6836e-6" y2="327.45"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#D9D9D9" stop-opacity="0" offset="0"></stop>
+                    <stop stop-color="#FFBC4B" offset="1"></stop>
+                </linearGradient>
+                <linearGradient id="b" x1="55.589" x2="372.69" y1="-23.745" y2="293.33" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F9E8D5" stop-opacity="0" offset="0"></stop>
+                    <stop stop-color="#FAD8A6" stop-opacity=".04" offset=".21"></stop>
+                    <stop stop-color="#FCC264" offset=".54"></stop>
+                    <stop stop-color="#FDBA4B" offset=".69"></stop>
+                </linearGradient>
+                <linearGradient id="a" x1="31.961" x2="247.1" y1="115.88" y2="332.12" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FDBA4B" offset=".13"></stop>
+                    <stop stop-color="#FDAA47" offset=".27"></stop>
+                    <stop stop-color="#FD823D" offset=".54"></stop>
+                    <stop stop-color="#FD5C35" offset=".77"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+        <!-- play and pause vedeo -->
+        <div class="container md:w-[40px] md:h-[40px]">
+            <label>
+                <input type="checkbox" id="playPauseToggle" class="play-btn" />
+                <div class="play-icon md:w-[25px]"></div>
+                <div class="pause-icon md:w-[25px]"></div>
+            </label>
         </div>
-        <!-- orange triangle -->
-        <div class="triangle"></div>
-        <!-- blue leaf -->
     </section>
-
+    <section class="relative bg-white flex  w-full flex-col lg:flex-row">
+        <div class="flex flex-col m-10 w-[80%] mx-auto lg:pl-16 lg:w-1/2">
+            <h1 class="text-2xl font-lexend font-semibold mb-5">What is SAM</h1>
+            <p class="max-w-[450px] text-pretty">Le SAM « Sustainable Agriculture Mecanization » est un projet lancé par l’initiative Al Moutmir pour
+                promouvoir la mécanisation agricole durable au niveau national. Il a pour base de collaborer étroitement
+                avec les agriculteurs pour développer une mécanisation agricole adapté et customisé pour le travail du jour
+                au jour.
+            </p>
+        </div>
+        <section id="slider" class="pl">
+            <input type="radio" name="slider" id="s1">
+            <input type="radio" name="slider" id="s2">
+            <input type="radio" name="slider" id="s3" checked>
+            <input type="radio" name="slider" id="s4">
+            <input type="radio" name="slider" id="s5">
+            <label for="s1" id="slide1"></label>
+            <label for="s2" id="slide2"></label>
+            <label for="s3" id="slide3"></label>
+            <label for="s4" id="slide4"></label>
+            <label for="s5" id="slide5"></label>
+          </section>
+    </section> 
+    <section id="actualiter" class="relative w-full overflow-hidden">
+        <div class="carousel-container flex w-full transition-transform duration-1000">
+          <div class="flex flex-col w-screen lg:flex-row">
+            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
+            <div class="flex flex-col justify-start lg:w-1/2">
+              <h3>Announcement</h3>
+              <h4>Meet Our 2024 Main Stage Speakers</h4>
+              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
+            </div>
+          </div>
+          <div class="flex flex-col w-full lg:flex-row">
+            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
+            <div class="flex flex-col justify-start lg:w-1/2">
+              <h3>Announcement</h3>
+              <h4>Meet Our 2024 Main Stage Speakers</h4>
+              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
+            </div>
+          </div>
+          <div class="flex flex-col w-full lg:flex-row">
+            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
+            <div class="flex flex-col justify-start lg:w-1/2">
+              <h3>Announcement</h3>
+              <h4>Meet Our 2024 Main Stage Speakers</h4>
+              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
+            </div>
+          </div>
+          <div class="flex flex-col w-full lg:flex-row">
+            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
+            <div class="flex flex-col justify-start lg:w-1/2">
+              <h3>Announcement</h3>
+              <h4>Meet Our 2024 Main Stage Speakers</h4>
+              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
+            </div>
+          </div>
+          <!-- Repeat the above div block for additional slides -->
+        </div>
+        <!-- Carousel navigation indicators can be added here -->
+      </section>
+      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="/js/cursor.js">
     </script>
+    <script src="/js/burger.js"></script>
+    <script src="/js/PlayPause.js"></script>
     <script>
-        const burger = document.querySelector("#burger");
-        const phone = document.querySelector(".phone-nav");
-        const close = document.querySelector(".close");
-        burger.addEventListener('click', function () {
-            if (phone.classList.contains("hidden")) {
-                phone.classList.remove("hidden");
-                phone.classList.add("block");
-                close.classList.remove("hidden");
-                close.classList.add("block");
-                burger.classList.add("hidden")
+        document.addEventListener('DOMContentLoaded', function () {
+            const carouselContainer = document.querySelector('.carousel-container');
+            const slides = document.querySelectorAll('.carousel-container > div');
+            let currentIndex = 0;
+            const slideInterval = 3000; // 3 seconds
+        
+            function moveToNextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
-        })
-        close.addEventListener('click', function(){
-            if(close.classList.contains("block")){
-                close.classList.remove("block");
-                close.classList.add("hidden")
-                phone.classList.remove("block")
-                phone.classList.add("hidden")
-                burger.classList.remove("hidden")
-            }
-        })
+        
+            setInterval(moveToNextSlide, slideInterval);
+        });
+        
     </script>
 </body>
 

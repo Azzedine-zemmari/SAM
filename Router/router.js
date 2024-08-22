@@ -37,37 +37,37 @@ router.get("/Actualiter",ActualiterController.getAllDetails)
 //     res.render("Admin/InsertActualiter")
 // })
 // router.post("/InsertActualiter",ActualiterController.AddAct)
+// Register route
 router.post('/register', async (req, res) => {
     const { nom, tel, email, password } = req.body;
     if (!nom || !email || !password || !tel) {
-        return res.status(400).send('Please fill in all fields.');
+        return res.render('login', { error: 'Please fill in all fields.' });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert the new user if the email does not exist
     const sql = 'INSERT INTO users (name, email, password, tel) VALUES (?, ?, ?, ?)';
     db.query(sql, [nom, email, hashedPassword, tel], (err, result) => {
         if (err) {
             console.error('Database error:', err);
-            return res.status(500).send('Database error. Please try again later.');
+            return res.render('login', { error: 'Database error. Please try again later.' });
         }
         req.session.user = {
-            id: result.insertId,  // Assuming `insertId` is the new user's ID
+            id: result.insertId,
             email: email,
-            isAdmin: false  // Assuming new users are not admins by default
+            isAdmin: false
         };
         req.session.save(err => {
             if (err) {
                 console.error('Session save error:', err);
-                return res.status(500).send('Registration succeeded, but there was an issue with the session. Please try logging in.');
+                return res.render('login', { error: 'Registration succeeded, but there was an issue with the session. Please try logging in.' });
             }
 
             return res.redirect('/');
         });
     });
 });
+
 
 // Login route
 router.post('/login', (req, res) => {
@@ -77,31 +77,29 @@ router.post('/login', (req, res) => {
     db.query(sql, [email], (err, result) => {
         if (err) {
             console.error('Database error:', err);
-            return res.status(500).send('Database error. Please try again later.');
+            return res.render('login', { error: 'Database error. Please try again later.' });
         }
 
         if (result.length === 0) {
-            return res.status(401).send('Invalid email or password.');
+            return res.render('login', { error: 'Invalid email or password.' });
         }
-        // Compare the provided password with the hashed password
+
         bcrypt.compare(password, result[0].password, (err, match) => {
             if (err) {
                 console.error('Error comparing passwords:', err);
-                return res.status(500).send('Error processing your request.');
+                return res.render('login', { error: 'Error processing your request.' });
             }
 
             if (match) {
                 req.session.user = {
                     id: result[0].id,
                     email: result[0].email,
-                    isAdmin: result[0].isAdmin 
+                    isAdmin: result[0].isAdmin
                 };
-                console.log('User details:', req.session.user); 
-                 // Save the session and redirect based on user role
-                 req.session.save(err => {
+                req.session.save(err => {
                     if (err) {
                         console.error('Session save error:', err);
-                        return res.status(500).send('Login succeeded, but there was an issue with the session. Please try logging in again.');
+                        return res.render('login', { error: 'Login succeeded, but there was an issue with the session. Please try logging in again.' });
                     }
 
                     if (req.session.user.isAdmin) {
@@ -110,13 +108,14 @@ router.post('/login', (req, res) => {
                         return res.redirect('/');
                     }
                 });
-
             } else {
-                return res.status(401).send('Invalid email or password.');
+                return res.render('login', { error: 'Invalid email or password.' });
             }
         });
     });
 });
+
+
 
 // Logout route
 router.get('/logout', (req, res) => {
@@ -219,5 +218,10 @@ router.get("/Perticipation",isAuthenticated,ParticipateController.GetParticipate
 router.get('/Admin/participations',isAdmin,ParticipateController.getAllParticipations);
 //validate a participation
 router.post('/validateParticipation/:id',isAdmin, ParticipateController.validateParticipation);
+
+//form 
+router.get("/Form",(req,res)=>{
+    res.render("Froms");
+})
 
 module.exports = router;    
