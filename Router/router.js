@@ -16,6 +16,9 @@ const isAdmin = require("../Middleware/isAdmin")
 
 
 router.get("/",(req,res)=>{
+    res.render("Onbuild");
+})
+router.get("/Home",(req,res)=>{
     res.render("Home", { session: req.session })
 })
 
