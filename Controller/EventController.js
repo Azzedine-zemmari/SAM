@@ -47,33 +47,70 @@ class EventController {
             res.status(500).send('Error fetching events.');
         }
     }
-    static async AddEvents(req,res){
-        if (!req.file) {
-            return res.status(400).send('No files were uploaded.');
-          }
-        
-          // Get form data
-          const { name, description, adress, EventStart, EventEnd, EventPlace } = req.body;
-          const image = req.file.filename; // Get the filename of the uploaded image
-        
-          // Insert data into the database
-          try {
-            const event = {
-              name,
-              description,
-              adress,
-              EventStart,
-              EventEnd,
-              EventPlace,
-              image,
-            };
-            await Event.InsertEvent(event);
-            res.redirect('/Admin/Events');
-          } catch (error) {
-            console.log(error);
-            res.status(500).send('Error creating event');
-          }
+    static async AddEvents(req, res) {
+        let formData = {
+            name: '',
+            description: '',
+            adress: '',
+            EventStart: '',
+            EventEnd: '',
+            EventPlace: ''
+        };
+        let errorMessage = null;
+    
+        if (req.method === 'POST') {
+            try {
+                formData = {
+                    name: req.body.name,
+                    description: req.body.description,
+                    adress: req.body.adress,
+                    EventStart: req.body.EventStart,
+                    EventEnd: req.body.EventEnd,
+                    EventPlace: req.body.EventPlace
+                };
+    
+                // Handle file upload if exists
+                if (req.file) {
+                    formData.image = req.file.filename;
+                }
+    
+                // Validate required fields
+                if (!formData.name || !formData.description || !formData.adress || !formData.EventStart || !formData.EventEnd || !formData.EventPlace) {
+                    throw new Error('All fields are required.');
+                }
+    
+                // Insert event into the database 
+                await Event.InsertEvent(formData);
+    
+                // Redirect to the event list 
+                return res.redirect('/Admin/Events');
+            } catch (error) {
+                console.error('Error during event insertion:', error);
+    
+                if (error.message.includes('ValidationError')) {
+                    errorMessage = 'There was a validation error. Please check your input data.';
+                } else if (error.message.includes('File')) {
+                    errorMessage = 'There was an error with the file upload. Please try again.';
+                } else if (error.message === 'All fields are required.') {
+                    errorMessage = 'Please fill in all required fields.';
+                } else {
+                    errorMessage = 'An error occurred while inserting the event. Please try again.';
+                }
+    
+                // Render the form with error message
+                return res.render('Admin/InsertEvent', {
+                    formData,
+                    errorMessage
+                });
+            }
+        }
+    
+        // Render the form with empty data or previously entered data
+        res.render('Admin/InsertEvent', { formData, errorMessage });
     }
+    
+
+
     //show form to update event
     static async ShowEvent(req,res){
         const id = req.params.id;
