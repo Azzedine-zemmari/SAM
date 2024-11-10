@@ -1,319 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Sona Template">
+    <meta name="keywords" content="Sona, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam</title>
-    <link rel="stylesheet" href="/css/tailwind.css">
-    <style>
-        .triangle {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 0 200px 200px;
-            border-color: transparent transparent transparent transparent;
-            position: relative;
-        }
-        
-        .triangle::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(37deg, rgba(255,152,82,1) 38%, rgba(255,0,116,1) 100%);
-            clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
-        }
-        
-          #s1,#s2,#s3,#s4,#s5{
-            display: none;
-          }
-          #slider {
-            height: 350px;
-            width: 1300px;
-            position: relative;
-            perspective: 700px;
-            transform-style: preserve-3d;
-            
-          }
-          
-          #slider label {
-            margin: auto;
-            width: 30%;
-            height: 100%;
-            border-radius: 4px;
-            position: absolute;
-            left: 0; right: 0;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-          }
-          
-          #s1:checked ~ #slide4, #s2:checked ~ #slide5,
-          #s3:checked ~ #slide1, #s4:checked ~ #slide2,
-          #s5:checked ~ #slide3 {
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
-            transform: translate3d(-30%,0,-200px);
-          }
-          
-          #s1:checked ~ #slide5, #s2:checked ~ #slide1,
-          #s3:checked ~ #slide2, #s4:checked ~ #slide3,
-          #s5:checked ~ #slide4 {
-            box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
-            transform: translate3d(-15%,0,-100px);
-          }
-          
-          #s1:checked ~ #slide1, #s2:checked ~ #slide2,
-          #s3:checked ~ #slide3, #s4:checked ~ #slide4,
-          #s5:checked ~ #slide5 {
-            box-shadow: 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
-            transform: translate3d(0,0,0);
-          }
-          
-          #s1:checked ~ #slide2, #s2:checked ~ #slide3,
-          #s3:checked ~ #slide4, #s4:checked ~ #slide5,
-          #s5:checked ~ #slide1 {
-            box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
-            transform: translate3d(15%,0,-100px);
-          }
-          
-          #s1:checked ~ #slide3, #s2:checked ~ #slide4,
-          #s3:checked ~ #slide5, #s4:checked ~ #slide1,
-          #s5:checked ~ #slide2 {
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
-            transform: translate3d(30%,0,-200px);
-          }
-          
-          #slide1 { background: #00BCD4 }
-          #slide2 { background: #4CAF50 }
-          #slide3 { background: #CDDC39 }
-          #slide4 { background: #FFC107 }
-          #slide5 { background: #FF5722 }
-        /* Media Query for smaller screens */
-@media (min-width: 375px) and (max-width:1023px) {
-    #slider {
-        width:80%;
-        margin: auto;
-    }
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SAM</title>
 
-    #slider label {
-        width: 80%;
-    }
-}
-@media (min-width:1024px){
-    #slider{
-        width:1500px;
-        margin: 10px auto;
-        
-    }
-    
-}
-.carousel-container {
-    width: 300%; /* Adjust according to the number of slides */
-  }
-  
-  .carousel-slide {
-    min-width: 100vw;
-  }
-        
-    </style>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<body class="">
-    <!-- Hero section -->
-    <section class="relative w-full h-screen flex justify-center items-center overflow-hidden">
-        <!-- Video background -->
-        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop id="myVideo">
-            <source src="/video/ocpvedeo.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-        <!-- White overlay with opacity -->
-        <div class="absolute inset-0 bg-white bg-opacity-[0.01]  pointer-events-none"></div>
-
-        <!-- Cursor effect -->
-        <div class="cursor"></div>
-
-
-        <!-- Navbar section -->
-        <header class="absolute top-0 left-0 w-full z-50">
-            <nav class="bg-white w-[80%] mx-auto mt-10 p-4 rounded">
-                <div class="flex justify-between items-center">
-                    <div class="flex">
-                        <img class="w-40 h-16 mt-2 ml-0" src="/img/logo.svg" alt="Sam logo">
-                    </div>
-                    <ul class="flex">
-                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/GetEvent">Evenements</a></li>
-                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/Actualiter">Actualites</a></li>
-                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/Perticipation">Reservation</a>
-                        </li>
-                        <li class="p-3"><a class="font-lexend hidden lg:block" href="#contact">Contact</a></li>
-                        <li class="p-3"><a class="font-lexend hidden lg:block" href="/aprops">A propos</a></li>
-                        <% if (session.user) { %>
-                            <li class="p-3"><a class="font-lexend hidden lg:block" href="/logout"
-                                    style="color: #DD6E42;">Déconnexion</a></li>
-                            <% } else { %>
-                                <li class="p-3"><a class="font-lexend hidden lg:block" href="/login">Connexion</a></li>
-                                <% } %>
-                                    <li class="flex justify-center items-center">
-                                        <svg id="burger" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            class="  w-8 h-8 lg:hidden">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                        </svg>
-                                    </li>
-                                    <li>
-                                        <svg class=" close hidden" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                            width="32" height="32" viewBox="0 0 48 48" style="fill:#FD7E14;">
-                                            <path
-                                                d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z">
-                                            </path>
-                                        </svg>
-                                    </li>
-                    </ul>
-                </div>
-                <ul class="hidden phone-nav">
-                    <li><a class="font-lexend pl-5" href="/">Accueil</a></li>
-                    <li><a class="font-lexend pl-5" href="/GetEvent">Evenements</a></li>
-                    <li><a class="font-lexend pl-5" href="/Actualiter">Actualites</a></li>
-                    <li><a class="font-lexend pl-5" href="/Perticipation">Reservation</a></li>
-                    <li><a class="font-lexend pl-5" href="#contact">Contact</a></li>
-                    <li><a class="font-lexend pl-5" href="/aprops">A propos</a>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Hero content -->
-        <div class="relative z-30 text-center p-8 rounded-lg">
-            <h1 class="text-6xl font-bold font-Exo text-gray-800">Empowering Agriculture Events</h1>
-            <p class="mt-7 text-xl font-Cursive">
-                SAM is revolutionizing agriculture event management,<br />
-                making it easier to stay updated on the latest advancements.
-            </p>
+    <!-- navbar Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
         </div>
-        <!-- orang circle and triangle svg -->
-        <svg fill="none" class="z-50 w-64 h-52 absolute bottom-0 -left-6" viewBox="0 0 327 327"
-            xmlns="http://www.w3.org/2000/svg" data-type="HeroBoxCircle" class="mess-svg box">
-            <path d="M327 327L0 0V327H327Z" fill="url(#c)"></path>
-            <path
-                d="m282.68 162.9c0 32.734-13.342 62.381-34.908 83.836l-168.55-167.7c21.565-21.455 51.353-34.717 84.268-34.717 65.829 0 119.19 53.096 119.19 118.58z"
-                fill="url(#b)"></path>
-            <path
-                d="m247.78 246.74c-21.565 21.466-51.365 34.74-84.291 34.74-64.982 0-117.81-51.717-119.18-116.02v-5.104c0.6757-31.744 13.88-60.411 34.907-81.307l168.56 167.7z"
-                fill="url(#a)"></path>
-            <defs>
-                <linearGradient id="c" x1="-13.568" x2="327.45" y1="2.6836e-6" y2="327.45"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#D9D9D9" stop-opacity="0" offset="0"></stop>
-                    <stop stop-color="#FFBC4B" offset="1"></stop>
-                </linearGradient>
-                <linearGradient id="b" x1="55.589" x2="372.69" y1="-23.745" y2="293.33" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#F9E8D5" stop-opacity="0" offset="0"></stop>
-                    <stop stop-color="#FAD8A6" stop-opacity=".04" offset=".21"></stop>
-                    <stop stop-color="#FCC264" offset=".54"></stop>
-                    <stop stop-color="#FDBA4B" offset=".69"></stop>
-                </linearGradient>
-                <linearGradient id="a" x1="31.961" x2="247.1" y1="115.88" y2="332.12" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#FDBA4B" offset=".13"></stop>
-                    <stop stop-color="#FDAA47" offset=".27"></stop>
-                    <stop stop-color="#FD823D" offset=".54"></stop>
-                    <stop stop-color="#FD5C35" offset=".77"></stop>
-                </linearGradient>
-            </defs>
-        </svg>
-        <!-- play and pause vedeo -->
-        <div class="container md:w-[40px] md:h-[40px]">
-            <label>
-                <input type="checkbox" id="playPauseToggle" class="play-btn" />
-                <div class="play-icon md:w-[25px]"></div>
-                <div class="pause-icon md:w-[25px]"></div>
-            </label>
+        <div class="header-configure-area">  
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="/">Accueil</a></li>
+                <li><a href="/GetEvent">Evenements</a></li>
+                <li><a href="/Actualiter">Actualites</a></li>
+                <li><a href="/Perticipation">Reservation</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="./propos.html">A propos</a></li> <% if (session.user) { %>
+                    <li><a href="/logout" style="color: #DD6E42;">Déconnexion</a></li>
+                <% } else { %>
+                    <li><a href="/login">Connexion</a></li>
+                <% } %>
+                </li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+     
+    </div>
+    <!-- navbar Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="/">
+                                <p style="color: #DD6E42; font-size: 20px;">SAM</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li class="active"><a href="/">Accueil</a></li>
+                                    <li><a href="/GetEvent">Evenements</a></li>
+                                    <li><a href="/Actualiter">Actualites</a></li>
+                                    <li><a href="/Perticipation">Reservation</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                    <li><a href="/aprops">A propos</a>
+                                        <% if (session.user) { %>
+                                            <li><a href="/logout" style="color: #DD6E42;">Déconnexion</a></li>
+                                        <% } else { %>
+                                            <li><a href="/login">Connexion</a></li>
+                                        <% } %>
+                                </ul>
+                            </nav>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero-text">
+                        <h1>Mécanisation agricole durable
+                            
+                        </h1>
+                        <p>Promouvoir la mécanisation agricole durable et  l’organisation d’un multiple évènement et compétition visant au même objectif </p>
+                        <a href="/decouvrir" class="primary-btn" style="font-size: 30px; font-weight: bold;">Decouvrir</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="/img/hero/1.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="/img/hero/3.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="/img/hero/agriculteurs.jpg"></div>
         </div>
     </section>
-    <section class="relative bg-white flex  w-full flex-col lg:flex-row">
-        <div class="flex flex-col m-10 w-[80%] mx-auto lg:pl-16 lg:w-1/2">
-            <h1 class="text-2xl font-lexend font-semibold mb-5">What is SAM</h1>
-            <p class="max-w-[450px] text-pretty">Le SAM « Sustainable Agriculture Mecanization » est un projet lancé par l’initiative Al Moutmir pour
-                promouvoir la mécanisation agricole durable au niveau national. Il a pour base de collaborer étroitement
-                avec les agriculteurs pour développer une mécanisation agricole adapté et customisé pour le travail du jour
-                au jour.
-            </p>
+    <!-- Hero Section End -->
+
+    
+
+    <!-- Services Section End -->
+    <section class="services-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Services</span>
+                        <h2>Decouvrir nos services</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        
+                        <h4>Formation et Sensibilisation</h4>
+                        <p>Organisation de sessions de formation pour enseigner les pratiques de mécanisation agricole durable.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        
+                        <h4>Assistance Technique Personnalisée</h4>
+                        <p>Offre d'une assistance technique sur mesure pour optimiser les exploitations agricoles.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        
+                        <h4>Organisation d'Événements et Compétitions</h4>
+                        <p>Organisation d'événements et de compétitions pour promouvoir l'innovation agricole.</p>
+                    </div>
+                </div>
+          
+               
+            </div>
         </div>
-        <section id="slider" class="pl">
-            <input type="radio" name="slider" id="s1">
-            <input type="radio" name="slider" id="s2">
-            <input type="radio" name="slider" id="s3" checked>
-            <input type="radio" name="slider" id="s4">
-            <input type="radio" name="slider" id="s5">
-            <label for="s1" id="slide1"></label>
-            <label for="s2" id="slide2"></label>
-            <label for="s3" id="slide3"></label>
-            <label for="s4" id="slide4"></label>
-            <label for="s5" id="slide5"></label>
-          </section>
-    </section> 
-    <section id="actualiter" class="relative w-full overflow-hidden">
-        <div class="carousel-container flex w-full transition-transform duration-1000">
-          <div class="flex flex-col w-screen lg:flex-row">
-            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
-            <div class="flex flex-col justify-start lg:w-1/2">
-              <h3>Announcement</h3>
-              <h4>Meet Our 2024 Main Stage Speakers</h4>
-              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
+    </section>
+    <!-- Services Section End -->
+
+   
+
+    <!-- Actualites Section -->
+    
+
+    
+
+       <!-- Footer Section Begin -->
+   <footer class="footer-section" id="contact">
+    <div class="container">
+        <div class="footer-text">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ft-about">
+                        <div class="logo">
+                            <a href="/">
+                                <p style="color: #DD6E42; font-size: 20px;">SAM</p>
+                            </a>
+                        </div>
+                        <p>Promotion de la mécanisation <br /> agricole durable</p>
+                        <div class="fa-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="ft-contact">
+                        <h6>Contactez-nous</h6>
+                        <ul>
+                            <li>(212) 6 33 44 78 </li>
+                            <li>ycoude@gmail.com</li>
+                            <li>14 Avenue sidi Mohamed Ben abdallah à  cote de Carrefour Market </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="ft-newslatter">
+                        <h6>Nouveau</h6>
+                        <p>Obtenez les dernières mises à jour et offres</p>
+                        <form action="#" class="fn-form">
+                            <input type="text" placeholder="Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="flex flex-col w-full lg:flex-row">
-            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
-            <div class="flex flex-col justify-start lg:w-1/2">
-              <h3>Announcement</h3>
-              <h4>Meet Our 2024 Main Stage Speakers</h4>
-              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
-            </div>
-          </div>
-          <div class="flex flex-col w-full lg:flex-row">
-            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
-            <div class="flex flex-col justify-start lg:w-1/2">
-              <h3>Announcement</h3>
-              <h4>Meet Our 2024 Main Stage Speakers</h4>
-              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
-            </div>
-          </div>
-          <div class="flex flex-col w-full lg:flex-row">
-            <img src="/img/about/istockphoto-1451085158-612x612.jpg" class="w-48 h-48 object-contain" alt="Announcement Image">
-            <div class="flex flex-col justify-start lg:w-1/2">
-              <h3>Announcement</h3>
-              <h4>Meet Our 2024 Main Stage Speakers</h4>
-              <p>Calling all VIP ticket holders! You can now save a seat for limited-capacity sessions. This can be done through the mobile app or on desktop — view our Mobile App Guide for detailed instructions on how to save a seat.</p>
-            </div>
-          </div>
-          <!-- Repeat the above div block for additional slides -->
         </div>
-        <!-- Carousel navigation indicators can be added here -->
-      </section>
-      
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="/js/cursor.js">
-    </script>
-    <script src="/js/burger.js"></script>
-    <script src="/js/PlayPause.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const carouselContainer = document.querySelector('.carousel-container');
-            const slides = document.querySelectorAll('.carousel-container > div');
-            let currentIndex = 0;
-            const slideInterval = 3000; // 3 seconds
-        
-            function moveToNextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        
-            setInterval(moveToNextSlide, slideInterval);
-        });
-        
-    </script>
+    </div>
+    <div class="copyright-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Conditions d’utilisation</a></li>
+                        <li><a href="#">Vie privée</a></li>
+                        <li><a href="#">Politique de l’environnement</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5">
+                    <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

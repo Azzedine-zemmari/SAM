@@ -16,10 +16,10 @@ const isAdmin = require("../Middleware/isAdmin")
 
 
 router.get("/",(req,res)=>{
-    res.render("Onbuild");
+    // res.render("Onbuild");
+    res.render("Home", { session: req.session })
 })
 router.get("/Home",(req,res)=>{
-    res.render("Home", { session: req.session })
 })
 
 router.get('/login', (req, res) => {
